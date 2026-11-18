@@ -1,5 +1,7 @@
 # VideoToMP3
 
+English | [한국어](README.ko.md)
+
 A Windows desktop app that extracts the audio track from video files and saves it as MP3, M4A, FLAC, WAV, or the original codec. The UI is Tauri 2 with React, the backend is Rust, and a bundled FFmpeg does the decoding and encoding.
 
 ## Install
