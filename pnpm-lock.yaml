@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fontsource/ibm-plex-sans-kr':
+    specifier: ^5.3.0
+    version: 5.3.0
   '@tauri-apps/api':
     specifier: ^2
     version: 2.12.5
@@ -67,6 +70,10 @@ packages:
       tslib: 2.9.1
     dev: true
     optional: true
+
+  /@fontsource/ibm-plex-sans-kr@5.3.0:
+    resolution: {integrity: sha512-Malq1TQAnpPHASG76fAthnCY0E41py2r7pZ5JEjgmGfA5tVGz7gwBfvrkhPvT3ZmyMobQrJakHhKZVuXQp7FjQ==}
+    dev: false
 
   /@napi-rs/wasm-runtime@1.2.6(@emnapi/core@2.0.0-beta.2)(@emnapi/runtime@2.0.0-beta.2):
     resolution: {integrity: sha512-mRyDmEw9/fCDXCGfL1sbgIw/GUK0PVxRW4YwgPN61F3LQ+fSyoBFarJVzgGyhF6kRzEQZ0FejDqm4WLXSeqQmw==}

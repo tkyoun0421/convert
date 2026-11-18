@@ -63,8 +63,8 @@ export function toFailure(error: unknown): Failure {
       case "noAudioStream":
         return { canceled: false, message: "오디오 트랙이 없는 영상입니다" };
       case "failed":
-        return { canceled: false, message: `변환 실패: ${error.message}` };
+        return { canceled: false, message: error.message };
     }
   }
-  return { canceled: false, message: `변환 실패: ${String(error)}` };
+  return { canceled: false, message: String(error) };
 }

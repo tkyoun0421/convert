@@ -15,6 +15,7 @@ import {
   type Bitrate,
   type OutputFormat,
 } from "./api";
+import { JobRow } from "./JobRow";
 import {
   VIDEO_EXTENSIONS,
   initialJobs,
@@ -72,24 +73,6 @@ function bitrateHint(format: OutputFormat): string {
       return "무손실 형식이라 비트레이트를 쓰지 않습니다. 대신 파일이 커집니다.";
     case "original":
       return "오디오를 다시 인코딩하지 않고 그대로 꺼내므로 비트레이트를 쓰지 않습니다.";
-  }
-}
-
-function statusText(job: Job): string {
-  const { status } = job;
-  switch (status.kind) {
-    case "queued":
-      return "대기 중";
-    case "converting":
-      return status.percent === null
-        ? "변환 중…"
-        : `변환 중 ${Math.floor(status.percent)}%`;
-    case "done":
-      return status.copied ? "완료 · 무손실 복사" : "완료";
-    case "failed":
-      return status.message;
-    case "canceled":
-      return "취소됨";
   }
 }
 
@@ -207,90 +190,130 @@ export default function App() {
   const hasFinished = jobs.some((j) => isFinished(j.status));
 
   return (
-    <main className={dragging ? "app dragging" : "app"}>
-      <h1>영상 → MP3 변환기</h1>
+    <div className={dragging ? "app dragging" : "app"}>
+      <main className="content">
+        <h1>영상 → MP3 변환기</h1>
 
-      <section className="dropzone">
-        <p>영상 파일을 여기로 끌어다 놓으세요</p>
-        <button type="button" onClick={pickFiles}>
-          파일 선택…
-        </button>
-      </section>
-
-      <section className="settings">
-        <div className="field">
-          <label htmlFor="format">출력 형식</label>
-          <select
-            id="format"
-            value={settings.format}
-            disabled={running}
-            onChange={(e) =>
-              setSettings((s) => ({
-                ...s,
-                format: e.target.value as OutputFormat,
-              }))
-            }
-          >
-            {OUTPUT_FORMATS.map((f) => (
-              <option key={f.value} value={f.value}>
-                {f.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="field">
-          <label htmlFor="bitrate">음질 (비트레이트)</label>
-          <select
-            id="bitrate"
-            value={settings.bitrate}
-            disabled={running || !usesBitrate(settings.format)}
-            aria-describedby="bitrate-hint"
-            onChange={(e) =>
-              setSettings((s) => ({
-                ...s,
-                bitrate: Number(e.target.value) as Bitrate,
-              }))
-            }
-          >
-            {BITRATES.map((b) => (
-              <option key={b} value={b}>
-                {b} kbps
-              </option>
-            ))}
-          </select>
-          <p id="bitrate-hint" className="hint">
-            {bitrateHint(settings.format)}
-          </p>
-        </div>
-        <div className="field">
-          <span className="label">저장 위치</span>
-          <div className="output-dir">
-            <span className="path" title={settings.outputDir ?? undefined}>
-              {settings.outputDir ?? "원본 영상과 같은 폴더"}
-            </span>
-            <button type="button" disabled={running} onClick={pickOutputDir}>
-              폴더 선택…
-            </button>
-            {settings.outputDir && (
-              <button
-                type="button"
-                disabled={running}
-                onClick={() => setSettings((s) => ({ ...s, outputDir: null }))}
-              >
-                원본 폴더로
-              </button>
-            )}
+        <section className="drop" aria-label="영상 추가">
+          <span className="drop-glyph" aria-hidden>
+            <i />
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+          <div className="drop-text">
+            <p className="drop-title">영상 파일을 여기로 끌어다 놓으세요</p>
+            <p className="drop-formats">mp4, mkv, avi, mov, webm 등</p>
           </div>
-        </div>
-      </section>
+          <button type="button" onClick={pickFiles}>
+            파일 선택…
+          </button>
+        </section>
 
-      {notice && (
-        <p className="notice" role="status">
-          {notice}
-        </p>
-      )}
+        <section className="settings">
+          <div className="setting">
+            <span className="setting-label">출력</span>
+            <div className="setting-control">
+              <div className="setting-inline">
+                <select
+                  aria-label="출력 형식"
+                  value={settings.format}
+                  disabled={running}
+                  onChange={(e) =>
+                    setSettings((s) => ({
+                      ...s,
+                      format: e.target.value as OutputFormat,
+                    }))
+                  }
+                >
+                  {OUTPUT_FORMATS.map((f) => (
+                    <option key={f.value} value={f.value}>
+                      {f.label}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  className="narrow"
+                  aria-label="음질"
+                  value={settings.bitrate}
+                  disabled={running || !usesBitrate(settings.format)}
+                  aria-describedby="bitrate-hint"
+                  onChange={(e) =>
+                    setSettings((s) => ({
+                      ...s,
+                      bitrate: Number(e.target.value) as Bitrate,
+                    }))
+                  }
+                >
+                  {BITRATES.map((b) => (
+                    <option key={b} value={b}>
+                      {b} kbps
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <p id="bitrate-hint" className="hint">
+                {bitrateHint(settings.format)}
+              </p>
+            </div>
+          </div>
+          <div className="setting">
+            <span className="setting-label">저장 위치</span>
+            <div className="setting-control output-dir">
+              <span className="path" title={settings.outputDir ?? undefined}>
+                {settings.outputDir ?? "원본 영상과 같은 폴더"}
+              </span>
+              <button type="button" disabled={running} onClick={pickOutputDir}>
+                폴더 선택…
+              </button>
+              {settings.outputDir && (
+                <button
+                  type="button"
+                  className="quiet"
+                  disabled={running}
+                  onClick={() => setSettings((s) => ({ ...s, outputDir: null }))}
+                >
+                  원본 폴더로
+                </button>
+              )}
+            </div>
+          </div>
+        </section>
 
-      <section className="toolbar">
+        {notice && (
+          <p className="notice" role="status">
+            {notice}
+          </p>
+        )}
+
+        {jobs.length === 0 ? (
+          <p className="empty">추가한 영상이 여기에 표시됩니다.</p>
+        ) : (
+          <ul className="jobs">
+            {jobs.map((job) => (
+              <JobRow
+                key={job.id}
+                job={job}
+                onCancel={() => cancel(job)}
+                onReveal={reveal}
+                onRemove={() => dispatch({ type: "remove", id: job.id })}
+              />
+            ))}
+          </ul>
+        )}
+      </main>
+
+      <footer className="actionbar">
+        <span className="copyright">Copyright © 2026 관태</span>
+        <button
+          type="button"
+          className="quiet"
+          disabled={!hasFinished}
+          onClick={() => dispatch({ type: "clearFinished" })}
+        >
+          완료 항목 지우기
+        </button>
         <button
           type="button"
           className="primary"
@@ -299,83 +322,7 @@ export default function App() {
         >
           {running ? "변환 중…" : `변환 시작 (${queuedCount}개)`}
         </button>
-        <button
-          type="button"
-          disabled={!hasFinished}
-          onClick={() => dispatch({ type: "clearFinished" })}
-        >
-          완료 항목 지우기
-        </button>
-      </section>
-
-      {jobs.length === 0 ? (
-        <p className="empty">변환할 영상이 없습니다.</p>
-      ) : (
-        <ul className="jobs">
-          {jobs.map((job) => (
-            <JobRow
-              key={job.id}
-              job={job}
-              onCancel={() => cancel(job)}
-              onReveal={reveal}
-              onRemove={() => dispatch({ type: "remove", id: job.id })}
-            />
-          ))}
-        </ul>
-      )}
-
-      <footer className="footer">Copyright © 2026 관태</footer>
-    </main>
-  );
-}
-
-interface JobRowProps {
-  job: Job;
-  onCancel: () => void;
-  onReveal: (path: string) => void;
-  onRemove: () => void;
-}
-
-function JobRow({ job, onCancel, onReveal, onRemove }: JobRowProps) {
-  const { status } = job;
-  const percent = status.kind === "converting" ? status.percent : null;
-  return (
-    <li className={`job ${status.kind}`}>
-      <div className="job-main">
-        <span className="job-name" title={job.input}>
-          {job.name}
-        </span>
-        <span className="job-status">{statusText(job)}</span>
-      </div>
-      {status.kind === "converting" && (
-        <div
-          className={percent === null ? "bar indeterminate" : "bar"}
-          role="progressbar"
-          aria-label={`${job.name} 변환 진행률`}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={percent ?? undefined}
-        >
-          <div className="fill" style={{ width: `${percent ?? 0}%` }} />
-        </div>
-      )}
-      <div className="job-actions">
-        {(status.kind === "queued" || status.kind === "converting") && (
-          <button type="button" onClick={onCancel}>
-            취소
-          </button>
-        )}
-        {status.kind === "done" && (
-          <button type="button" onClick={() => onReveal(status.output)}>
-            폴더에서 보기
-          </button>
-        )}
-        {isFinished(status) && (
-          <button type="button" onClick={onRemove}>
-            목록에서 제거
-          </button>
-        )}
-      </div>
-    </li>
+      </footer>
+    </div>
   );
 }
