@@ -1,7 +1,7 @@
 {
   "name": "video-to-mp3",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "관태",
   "packageManager": "pnpm@8.15.2",
   "type": "module",
