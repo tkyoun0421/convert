@@ -6,9 +6,9 @@ A Windows desktop app that extracts the audio track from video files and saves i
 
 ## Install
 
-1. Open the latest successful **Windows build** run on the repository's **Actions** tab.
-2. Download the `VideoToMP3-windows` artifact and unzip it.
-3. Run `VideoToMP3_<version>_x64-setup.exe`. The `.msi` file in the same archive is an alternative installer.
+Download [VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe) (about 253 MB) and run it. Other versions are on the [Releases](https://github.com/tkyoun0421/convert/releases) page.
+
+The installer includes FFmpeg and the WebView2 runtime, so it works on a PC without an internet connection. If WebView2 is already installed, the installer skips it.
 
 The installer is not code-signed, so Windows SmartScreen warns on first run. Select **More info**, then **Run anyway**.
 

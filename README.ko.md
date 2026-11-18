@@ -6,9 +6,9 @@
 
 ## 설치
 
-1. 저장소의 **Actions** 탭에서 가장 최근에 성공한 **Windows build** 실행 기록을 엽니다.
-2. `VideoToMP3-windows` 아티팩트를 받아 압축을 풉니다.
-3. `VideoToMP3_<버전>_x64-setup.exe`를 실행합니다. 같은 압축 파일에 든 `.msi`로 설치해도 됩니다.
+[VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe)(약 253 MB)를 받아 실행합니다. 다른 버전은 [Releases](https://github.com/tkyoun0421/convert/releases) 페이지에 있습니다.
+
+설치 파일에 FFmpeg와 WebView2 런타임이 들어 있어서 인터넷이 없는 PC에서도 설치됩니다. WebView2가 이미 있으면 그 부분은 건너뜁니다.
 
 설치 파일에 코드 서명이 없어서 처음 실행할 때 Windows SmartScreen 경고가 뜹니다. **추가 정보**를 누른 뒤 **실행**을 누릅니다.
 
