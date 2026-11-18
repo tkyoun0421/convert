@@ -191,8 +191,10 @@ export default function App() {
 
   return (
     <div className={dragging ? "app dragging" : "app"}>
-      <main className="content">
+      <header className="masthead">
         <h1>영상 → MP3 변환기</h1>
+      </header>
+      <main className="content">
 
         <section className="drop" aria-label="영상 추가">
           <span className="drop-glyph" aria-hidden>
