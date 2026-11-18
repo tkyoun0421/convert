@@ -1,6 +1,6 @@
 # 인수인계: 영상 → 오디오 변환기
 
-작성일 2026-11-18. 다음 작업자가 이 파일 하나만 읽고 바로 이어서 일할 수 있게 정리했습니다. 실행 방법과 기능 설명은 `README.md`에 있습니다.
+작성일 2026-11-18. 다음 작업자가 이 파일 하나만 읽고 바로 이어서 일할 수 있게 정리했습니다. 설치 방법과 폴더 구조는 `README.md`(영어)와 `README.ko.md`(한국어)에 있습니다.
 
 ## 목표
 
@@ -13,23 +13,29 @@ Windows에서 영상 파일의 오디오 트랙을 꺼내 MP3 등으로 저장�
 - 음질이 떨어지지 않을 것. 기본 320 kbps, 같은 코덱이면 다시 인코딩하지 않고 복사
 - 출력 형식 선택: MP3(기본), M4A, FLAC, WAV, 원본 형식 그대로
 - 제작자 표시: `Copyright © 2026 관태`
+- 디자인: 파형 모양 진행률. 색은 "숲속 벽돌집" 느낌(흰 바탕, 벽돌 갈색, 숲 초록, 네이비 글자). 다크 모드는 필요 없음
 - Windows 설치 파일은 GitHub Actions에서 빌드 (개발 기기는 macOS arm64)
 
 ## 현재 상태
 
-기능 구현은 끝났고, 아직 커밋하지 않았습니다. 모든 파일이 `git status`에서 untracked로 나옵니다. GitHub 원격 저장소도 아직 없습니다.
+모든 작업은 `feat/audio-converter` 브랜치에 커밋해서 push했고, PR은 https://github.com/tkyoun0421/convert/pull/1 입니다. 아직 병합하지 않았습니다. `main`에는 초기 커밋만 있습니다.
+
+Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성공했습니다.
+
+- Windows용 FFmpeg 8.1로 `cargo test` 29개가 모두 통과했습니다. 단위 테스트 14개, 화면↔Rust 호출 계약 테스트 1개, 실제 FFmpeg로 변환하는 통합 테스트 14개입니다.
+- 설치 파일이 두 개 만들어졌습니다. `VideoToMP3_0.1.0_x64-setup.exe`(NSIS, 40.63 MiB)와 `VideoToMP3_0.1.0_x64_ko-KR.msi`(54.18 MiB)입니다. 아티팩트 이름은 `VideoToMP3-windows`입니다.
+- 이 실행은 디자인 변경 전 커밋입니다. 그 뒤 커밋(디자인, README, 색상)의 CI는 이 문서를 쓰는 시점에 돌고 있었습니다.
 
 이 Mac에서 확인한 것은 다음과 같습니다.
 
-- `cargo test --manifest-path src-tauri/Cargo.toml`: 29개 통과. 단위 테스트 14개, 화면↔Rust 호출 계약 테스트 1개, 실제 FFmpeg로 변환하는 통합 테스트 14개입니다.
+- `cargo test`, `cargo clippy --all-targets`(경고 0), `cargo fmt --check`, `pnpm build`가 모두 통과합니다.
 - 계약 테스트(`src-tauri/src/lib.rs`의 `frontend_payloads_round_trip_through_the_commands`)는 `src/api.ts`가 보내는 것과 같은 JSON으로 `convert`, `cancel` 명령을 부릅니다. 인자 이름 `outputDir`를 일부러 틀리게 바꾸면 실패하는 것까지 확인했습니다.
-- `cargo clippy --all-targets` 경고 0개, `cargo fmt --check` 통과, `pnpm build` 통과.
-- `pnpm tauri dev`로 앱을 띄워 화면과 하단 저작권 문구가 나오는 것을 스크린샷으로 확인했습니다.
+- 화면은 두 가지로 확인했습니다. 하나는 실제 Tauri 창을 띄워 찍은 스크린샷(빈 목록 상태)입니다. 다른 하나는 Tauri API만 가짜로 바꾼 임시 미리보기 페이지를 headless Chrome으로 찍은 것입니다. 이 페이지는 실제 화면 코드에 드롭 이벤트와 진행률·완료·실패를 흘려 넣습니다. 미리보기 파일은 확인 후 지웠습니다.
 
 확인하지 못한 것은 다음과 같습니다.
 
-- **앱 화면에서 파일을 골라 끝까지 변환하는 과정.** macOS 파일 선택 창은 별도 프로세스라 자동 클릭이 사이드바에만 먹히고 파일 목록에는 먹히지 않았습니다. 진행률 막대가 실제로 움직이는 모습도 화면으로는 보지 못했습니다. Rust 테스트는 진행률 값이 0~100 사이로 전달되는지만 확인합니다.
-- **Windows 빌드 전체.** CI가 한 번도 돌지 않았습니다. 아래 위험 항목을 보세요.
+- **실제 앱에서 파일을 골라 끝까지 변환하는 과정.** macOS 파일 선택 창은 별도 프로세스라 자동 클릭이 사이드바에만 먹혔습니다. Windows 실기기에서도 아직 설치해 보지 않았습니다.
+- **최종 색상의 실제 Tauri 창 모습.** 벽돌 팔레트는 미리보기 페이지로만 확인했습니다.
 
 ## 설계 결정과 이유
 
@@ -45,48 +51,36 @@ Windows에서 영상 파일의 오디오 트랙을 꺼내 MP3 등으로 저장�
 | 앱 종료 시 `cancel_all` | Windows는 부모가 죽어도 자식 프로세스를 정리하지 않음 |
 | Windows에서 `CREATE_NO_WINDOW` | 변환할 때마다 콘솔 창이 깜빡이지 않게 |
 | 동시 변환 2개 (`src/App.tsx`의 `MAX_PARALLEL`) | LAME 인코딩은 단일 스레드라 약간의 병렬이 이득 |
-| WiX 언어 `ko-KR` | MSI 기본 언어(en-US, 코드페이지 1252)는 한글 제작자명 `관태`를 담지 못함 |
+| WiX 언어 `ko-KR` | MSI 기본 언어(en-US, 코드페이지 1252)는 한글 제작자명 `관태`를 담지 못함. CI에서 MSI 생성 성공 |
+| `build.rs`에서 MSVC 대상이면 매니페스트를 링커(`/MANIFEST:EMBED`)로 넣음 | tauri-build는 매니페스트를 앱 실행 파일에만 넣음. 테스트 실행 파일은 `TaskDialogIndirect`가 없는 공용 컨트롤 v5를 불러 `STATUS_ENTRYPOINT_NOT_FOUND`로 죽었음 |
+| `fetch-ffmpeg.mjs`는 압축 해제한 파일을 `rename` 대신 복사 | CI 러너는 임시 폴더(C:)와 저장소(D:)가 달라 `EXDEV`로 실패했음 |
+| 파형은 파일 경로를 시드로 만든 고정 모양(`src/Waveform.tsx`) | 파일마다 고유한 모양이라 목록에서 구분이 쉬움. 진행률만큼 왼쪽부터 초록으로 채움 |
+| 글꼴은 IBM Plex Sans KR 400·600을 앱에 내장(`@fontsource`) | 오프라인에서도 같은 모양. 숫자 폭이 고정이라 %가 흔들리지 않음. `dist`가 약 5MB 늘어남 |
 | 권한은 `opener:allow-reveal-item-in-dir`, `dialog:allow-open`만 허용 | 필요한 최소 권한 |
 
 ## 위험과 미확인 항목
 
-1. **MSI 빌드의 한글 처리.** `bundle.publisher`가 MSI의 Manufacturer로 들어갑니다. `ko-KR` 지정으로 해결될 것으로 보지만 실행해 보지 않았습니다. CI에서 `LGHT0311` 같은 코드페이지 오류가 나면 `publisher`를 영문으로 바꾸거나 `bundle.targets`를 `["nsis"]`로 줄이면 됩니다.
-2. **Windows용 FFmpeg 8.1과 Mac용 6.0의 차이.** 통합 테스트는 Mac의 6.0으로만 돌았습니다. CI의 `cargo test`가 8.1로 같은 테스트를 돌리므로 첫 CI 실행 결과를 꼭 확인해야 합니다.
-3. **libopus 유무.** Windows LGPL 빌드에 `libopus`가 없으면 Opus 테스트는 이유를 출력하고 건너뜁니다. 실패로 나오지 않으니 로그를 보고 판단해야 합니다.
-4. **설치 파일 크기.** FFmpeg 정적 빌드가 커서 설치 파일이 수십 MB가 될 것으로 예상합니다(측정 안 함).
-5. **코드 서명 없음.** 처음 실행할 때 SmartScreen 경고가 뜹니다.
-6. **취소 경쟁 구간.** 취소 요청이 FFmpeg 프로세스 등록보다 먼저 도착하면 무시되고 변환이 끝까지 진행됩니다. 몇 밀리초 수준이라 그대로 두었습니다.
-7. **배포 시 라이선스.** 외부에 배포하려면 FFmpeg LGPL 고지와 라이선스 전문을 함께 넣어야 합니다. 아직 넣지 않았습니다.
+1. **libopus 유무.** Windows LGPL 빌드에 `libopus`가 없으면 Opus 테스트는 통과로 끝나되 실제로는 건너뜁니다. 테스트 출력이 캡처되어서 CI 로그로는 어느 쪽인지 알 수 없습니다. `cargo test -- --nocapture`로 확인할 수 있습니다.
+2. **코드 서명 없음.** 처음 실행할 때 SmartScreen 경고가 뜹니다.
+3. **취소 경쟁 구간.** 취소 요청이 FFmpeg 프로세스 등록보다 먼저 도착하면 무시되고 변환이 끝까지 진행됩니다. 몇 밀리초 수준이라 그대로 두었습니다.
+4. **배포 시 라이선스.** 외부에 배포하려면 FFmpeg LGPL 고지와 라이선스 전문을 함께 넣어야 합니다. 아직 넣지 않았습니다.
+5. **CI 중복 실행.** 연달아 push하면 실행이 겹쳐 돕니다(한 번에 약 10분). 워크플로에 `concurrency`를 넣으면 이전 실행이 자동 취소됩니다.
 
 ## 다음 할 일
 
 순서대로 진행하면 됩니다.
 
-1. 사용자 승인을 받아 커밋합니다. 기본 브랜치가 `main`이므로 브랜치를 먼저 만드는 것이 좋습니다.
-2. GitHub 저장소를 만들고 push합니다(사용자 승인 필요). `gh`는 이 Mac에 로그인되어 있습니다.
-3. Actions의 **Windows build** 결과를 확인합니다. `cargo test` 로그에서 Opus 테스트가 건너뛰어졌는지, `pnpm tauri build`에서 MSI가 만들어졌는지 봅니다.
-4. Artifacts에서 설치 파일을 받아 Windows PC에 설치하고, 영상을 끌어다 놓아 변환, 진행률 막대, 취소, **폴더에서 보기**를 직접 확인합니다.
-5. 필요하면 다듬습니다. 사용자에게 언급만 하고 답을 받지 못한 후보는 창 제목과 앱 이름 변경입니다. 형식이 늘었는데 아직 "MP3 변환기"입니다. 일괄 변환 전체 진행률(예: 3/10개 완료)은 아직 없습니다.
-
-## 파일 지도
-
-- `src-tauri/src/converter.rs`: probe, 형식별 plan 표, 진행률 파싱, 출력 이름 예약, 실행 중 작업 레지스트리, convert, cancel
-- `src-tauri/src/lib.rs`: Tauri 명령 `convert`, `cancel`, 플러그인 등록, 종료 처리, 호출 계약 테스트
-- `src-tauri/tests/convert.rs`: 실제 FFmpeg를 쓰는 통합 테스트
-- `src-tauri/build.rs`: 테스트가 FFmpeg 파일을 찾도록 `TARGET_TRIPLE` 환경 변수를 내보냄
-- `src-tauri/tauri.conf.json`: 앱 이름, 창, `externalBin`, 제작자·저작권, WiX 언어
-- `src-tauri/capabilities/default.json`: 화면이 쓸 수 있는 권한
-- `src/api.ts`: Rust 명령 호출 래퍼, 형식과 비트레이트 목록, 오류 메시지
-- `src/jobs.ts`: 작업 상태 타입과 reducer, 영상 확장자 목록
-- `src/App.tsx`, `src/App.css`: 화면, 동시 2개 스케줄러, 드래그 앤 드롭, 설정 저장(localStorage)
-- `scripts/fetch-ffmpeg.mjs`: 현재 플랫폼용 FFmpeg를 `src-tauri/binaries/`에 받고 `libmp3lame` 유무를 검사
-- `.github/workflows/windows.yml`: Windows 테스트와 설치 파일 빌드
+1. PR #1의 최신 커밋 CI가 성공했는지 확인합니다.
+2. 최신 실행의 `VideoToMP3-windows` 아티팩트를 받아 Windows PC에 설치합니다. 영상을 끌어다 놓아 변환, 파형 진행률, 취소, **폴더에서 보기**, 출력 형식별 결과를 직접 확인합니다.
+3. 문제가 없으면 사용자 승인을 받아 PR #1을 병합합니다.
+4. 남은 후보입니다. 창 제목과 앱 이름이 아직 "MP3 변환기"입니다. 일괄 변환 전체 진행률(예: 3/10개 완료)은 아직 없습니다.
 
 ## 알아둘 점
 
 - Rust는 이번 작업 중 rustup으로 설치했습니다. 새 터미널이 아니면 `source "$HOME/.cargo/env"`를 먼저 실행합니다.
 - 로컬 pnpm은 8.15.2이고 `package.json`의 `packageManager`도 같은 버전입니다. lockfile 형식이 바뀌지 않게 같은 버전을 씁니다.
-- `src-tauri/binaries/`는 Git에 올라가지 않습니다. 새로 clone하면 `node scripts/fetch-ffmpeg.mjs`부터 실행합니다. 이 파일이 없으면 테스트와 빌드가 실패합니다.
-- 진행률은 FFmpeg `-progress`의 `out_time_us`를 probe한 길이로 나눈 값입니다. 길이를 모르는 영상이면 진행률 없이 움직이는 막대와 "변환 중…"을 보여 줍니다.
+- `src-tauri/binaries/`는 Git에 올라가지 않습니다. 새로 clone하면 `node scripts/fetch-ffmpeg.mjs`부터 실행합니다.
+- 진행률은 FFmpeg `-progress`의 `out_time_us`를 probe한 길이로 나눈 값입니다. 길이를 모르는 영상이면 진행률 없이 파형이 천천히 깜빡이고 "변환 중"을 보여 줍니다.
+- 디자인 작업에는 Anthropic 공식 `frontend-design` 스킬(`anthropics/skills`)을 받아 `~/.claude/skills/frontend-design`에 설치해서 썼습니다.
 - 제작자 이름은 사용자가 쓴 그대로 `관태`로 넣었습니다. Git 사용자 이름은 `태관`이라 다릅니다. 둘 중 무엇이 맞는지 사용자에게 확인하세요.
 - `todo.md`는 작업용 체크리스트이고 `.git/info/exclude`로 Git에서 제외했습니다.
