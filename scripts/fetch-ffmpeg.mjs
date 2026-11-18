@@ -1,7 +1,7 @@
 // Downloads the FFmpeg binary that Tauri bundles as a sidecar for the current Rust host target.
 // Usage: node scripts/fetch-ffmpeg.mjs
 import { execFileSync } from "node:child_process";
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -46,7 +46,8 @@ if (existsSync(dest)) {
     writeFileSync(archive, bytes);
     // bsdtar ships with macOS and Windows 10+ and reads zip archives.
     execFileSync("tar", ["-xf", archive, "-C", work, source.zipEntry], { stdio: "inherit" });
-    renameSync(join(work, source.zipEntry), dest);
+    // The temp dir can be on another drive (C: vs D: on CI), where rename fails with EXDEV.
+    copyFileSync(join(work, source.zipEntry), dest);
     rmSync(work, { recursive: true, force: true });
   } else {
     writeFileSync(dest, gunzipSync(bytes));
