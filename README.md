@@ -6,9 +6,9 @@ A Windows desktop app that extracts the audio track from video files and saves i
 
 ## Install
 
-Download [VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe) (about 253 MB) and run it. Other versions are on the [Releases](https://github.com/tkyoun0421/convert/releases) page.
+Download [VideoToMP3_0.1.0_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.0/VideoToMP3_0.1.0_x64-setup.exe) (about 45 MB) and run it. Other versions are on the [Releases](https://github.com/tkyoun0421/convert/releases) page.
 
-The installer includes FFmpeg and the WebView2 runtime, so it works on a PC without an internet connection. If WebView2 is already installed, the installer skips it.
+The app needs the Microsoft Edge WebView2 runtime. Windows 11 includes it, and most Windows 10 PCs already have it. For a PC that has neither WebView2 nor an internet connection, use [VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe) (about 253 MB) instead. It includes the WebView2 installer and has the same features.
 
 The installer is not code-signed, so Windows SmartScreen warns on first run. Select **More info**, then **Run anyway**.
 

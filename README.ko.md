@@ -6,9 +6,9 @@
 
 ## 설치
 
-[VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe)(약 253 MB)를 받아 실행합니다. 다른 버전은 [Releases](https://github.com/tkyoun0421/convert/releases) 페이지에 있습니다.
+[VideoToMP3_0.1.0_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.0/VideoToMP3_0.1.0_x64-setup.exe)(약 45 MB)를 받아 실행합니다. 다른 버전은 [Releases](https://github.com/tkyoun0421/convert/releases) 페이지에 있습니다.
 
-설치 파일에 FFmpeg와 WebView2 런타임이 들어 있어서 인터넷이 없는 PC에서도 설치됩니다. WebView2가 이미 있으면 그 부분은 건너뜁니다.
+앱을 실행하려면 Microsoft Edge WebView2 런타임이 필요합니다. Windows 11에는 기본으로 들어 있고, Windows 10도 대부분 이미 설치돼 있습니다. WebView2도 인터넷도 없는 PC라면 WebView2 설치 관리자가 들어 있는 [VideoToMP3_0.1.1_x64-setup.exe](https://github.com/tkyoun0421/convert/releases/download/v0.1.1/VideoToMP3_0.1.1_x64-setup.exe)(약 253 MB)를 대신 씁니다. 기능은 같습니다.
 
 설치 파일에 코드 서명이 없어서 처음 실행할 때 Windows SmartScreen 경고가 뜹니다. **추가 정보**를 누른 뒤 **실행**을 누릅니다.
 
