@@ -20,11 +20,12 @@ You need Rust (through [rustup](https://rustup.rs)), Node.js 22, and pnpm 8. On 
 pnpm install
 node scripts/fetch-ffmpeg.mjs   # downloads FFmpeg for this platform into src-tauri/binaries/
 pnpm tauri dev                  # run the app in development mode
+pnpm test                       # UI tests with Vitest and fake Tauri modules
 cargo test --manifest-path src-tauri/Cargo.toml
 pnpm tauri build                # installers land in src-tauri/target/release/bundle/
 ```
 
-The tests convert real files with the downloaded FFmpeg, so run `fetch-ffmpeg.mjs` before `cargo test`.
+The Rust tests convert real files with the downloaded FFmpeg, so run `fetch-ffmpeg.mjs` before `cargo test`.
 
 ## Structure
 
@@ -33,14 +34,21 @@ The React UI sends one `convert` command per file, with a channel for progress u
 ```
 .
 ├── src/                         React UI
-│   ├── App.tsx                  Layout, settings, drag and drop, queue scheduler
-│   ├── JobRow.tsx               One queued file: status, actions, progress
-│   ├── Waveform.tsx             Per-file waveform that doubles as the progress bar
-│   ├── jobs.ts                  Job states and reducer, accepted video extensions
-│   ├── api.ts                   Typed wrappers for the Rust commands
+│   ├── App.tsx                  Wires the services, hooks and components together
+│   ├── domain/                  Pure logic with no React or Tauri: job states and reducer, formats, settings, waveform, labels
+│   ├── services/                Interfaces for the outside world, with Tauri and localStorage implementations
+│   ├── hooks/                   React state: settings, the conversion queue, drag and drop
+│   ├── components/              Display only: props in, markup out
+│   ├── test/                    Fake Tauri modules for the UI tests
 │   └── App.css                  Light and dark design tokens, styles
 ├── src-tauri/                   Rust backend
-│   ├── src/converter.rs         Conversion core: probe, format plans, progress, cancel
+│   ├── src/converter/           Conversion core, one file per concern
+│   │   ├── mod.rs               Public types and `convert`: probe, plan, run, report
+│   │   ├── probe.rs             Reads the `ffmpeg -i` banner: length and audio codec
+│   │   ├── plan.rs              Output format and source codec to FFmpeg arguments
+│   │   ├── progress.rs          `-progress` lines to progress reports
+│   │   ├── ffmpeg.rs            Starting FFmpeg, reading its output, stderr to errors
+│   │   └── registry.rs          Running conversions and cancel
 │   ├── src/lib.rs               Tauri commands `convert` and `cancel`, IPC contract test
 │   ├── tests/convert.rs         Integration tests against the real FFmpeg binary
 │   ├── binaries/                FFmpeg sidecar, downloaded and not tracked by Git

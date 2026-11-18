@@ -1,7 +1,6 @@
-import { useMemo, type CSSProperties } from "react";
 import type { JobStatus } from "./jobs";
 
-const BARS = 80;
+export const BARS = 80;
 /** Bars around the progress edge that move with the beat: this many behind it, and ahead. */
 const LIVE_BEHIND = 6;
 const LIVE_AHEAD = 2;
@@ -18,7 +17,17 @@ const TEMPO: { upTo: number; beat: number }[] = [
   { upTo: Infinity, beat: 0.27 },
 ];
 
-function beatSeconds(speed: number | null): number {
+export interface Bar {
+  /** 0..1 */
+  height: number;
+  /** 0..1, offsets each bar's beat so neighbours do not move in lockstep. */
+  phase: number;
+  on: boolean;
+  live: boolean;
+}
+
+export function beatSeconds(status: JobStatus): number {
+  const speed = status.kind === "converting" ? status.speed : null;
   if (speed === null) return TEMPO[1].beat;
   return TEMPO.find((t) => speed <= t.upTo)!.beat;
 }
@@ -68,23 +77,12 @@ function isLive(status: JobStatus, filled: number, i: number): boolean {
   return i >= filled - LIVE_BEHIND && i < filled + LIVE_AHEAD;
 }
 
-export function Waveform({ seed, status }: { seed: string; status: JobStatus }) {
-  const heights = useMemo(() => waveformHeights(seed), [seed]);
+export function waveformBars(heights: number[], status: JobStatus): Bar[] {
   const filled = filledBars(status);
-  const beat = beatSeconds(status.kind === "converting" ? status.speed : null);
-  return (
-    <div
-      className={`wave wave-${status.kind}`}
-      style={{ "--bars": BARS, "--beat": `${beat}s` } as CSSProperties}
-      aria-hidden
-    >
-      {heights.map((h, i) => (
-        <span
-          key={i}
-          className={`bar${i < filled ? " on" : ""}${isLive(status, filled, i) ? " live" : ""}`}
-          style={{ "--h": h, "--phase": (i * 0.618) % 1 } as CSSProperties}
-        />
-      ))}
-    </div>
-  );
+  return heights.map((height, i) => ({
+    height,
+    phase: (i * 0.618) % 1,
+    on: i < filled,
+    live: isLive(status, filled, i),
+  }));
 }

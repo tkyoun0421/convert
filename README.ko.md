@@ -20,11 +20,12 @@ Rust([rustup](https://rustup.rs)으로 설치), Node.js 22, pnpm 8이 필요합�
 pnpm install
 node scripts/fetch-ffmpeg.mjs   # 현재 플랫폼용 FFmpeg를 src-tauri/binaries/에 받음
 pnpm tauri dev                  # 개발 모드로 앱 실행
+pnpm test                       # Vitest와 가짜 Tauri 모듈로 돌리는 화면 테스트
 cargo test --manifest-path src-tauri/Cargo.toml
 pnpm tauri build                # 설치 파일은 src-tauri/target/release/bundle/에 생김
 ```
 
-테스트는 받아 둔 FFmpeg로 실제 파일을 변환합니다. 그래서 `cargo test` 전에 `fetch-ffmpeg.mjs`를 먼저 실행해야 합니다.
+Rust 테스트는 받아 둔 FFmpeg로 실제 파일을 변환합니다. 그래서 `cargo test` 전에 `fetch-ffmpeg.mjs`를 먼저 실행해야 합니다.
 
 ## 구조
 
@@ -33,14 +34,21 @@ React 화면은 파일마다 `convert` 명령을 한 번씩 보내고, 진행률
 ```
 .
 ├── src/                         React 화면
-│   ├── App.tsx                  배치, 설정, 드래그 앤 드롭, 변환 대기열 관리
-│   ├── JobRow.tsx               목록의 파일 한 줄: 상태, 버튼, 진행률
-│   ├── Waveform.tsx             진행률 막대 역할을 하는 파일별 파형
-│   ├── jobs.ts                  작업 상태와 reducer, 받는 영상 확장자 목록
-│   ├── api.ts                   Rust 명령을 부르는 타입 래퍼
+│   ├── App.tsx                  서비스, 훅, 컴포넌트를 이어 붙이는 곳
+│   ├── domain/                  React와 Tauri를 모르는 순수 로직: 작업 상태와 reducer, 형식, 설정, 파형, 화면 문구
+│   ├── services/                바깥 세계와 닿는 인터페이스와 그 구현(Tauri, localStorage)
+│   ├── hooks/                   React 상태: 설정, 변환 대기열, 드래그 앤 드롭
+│   ├── components/              그리기만 하는 컴포넌트: props를 받아 화면을 돌려줌
+│   ├── test/                    화면 테스트용 가짜 Tauri 모듈
 │   └── App.css                  라이트·다크 디자인 토큰과 스타일
 ├── src-tauri/                   Rust 백엔드
-│   ├── src/converter.rs         변환 핵심: 입력 확인, 형식별 처리 방식, 진행률, 취소
+│   ├── src/converter/           변환 핵심. 관심사마다 파일 하나
+│   │   ├── mod.rs               공개 타입과 `convert`: 확인, 계획, 실행, 보고
+│   │   ├── probe.rs             `ffmpeg -i` 출력에서 길이와 오디오 코덱을 읽음
+│   │   ├── plan.rs              출력 형식과 원본 코덱으로 FFmpeg 인자를 정함
+│   │   ├── progress.rs          `-progress` 줄을 진행률 보고로 바꿈
+│   │   ├── ffmpeg.rs            FFmpeg 실행, 출력 읽기, stderr를 오류로 바꿈
+│   │   └── registry.rs          실행 중인 변환 목록과 취소
 │   ├── src/lib.rs               Tauri 명령 `convert`·`cancel`, 화면↔Rust 호출 계약 테스트
 │   ├── tests/convert.rs         실제 FFmpeg로 돌리는 통합 테스트
 │   ├── binaries/                FFmpeg sidecar. 받아서 쓰며 Git에는 올리지 않음

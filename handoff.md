@@ -29,7 +29,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 이 Mac에서 확인한 것은 다음과 같습니다.
 
 - `cargo test`, `cargo clippy --all-targets`(경고 0), `cargo fmt --check`, `pnpm build`가 모두 통과합니다.
-- 계약 테스트(`src-tauri/src/lib.rs`의 `frontend_payloads_round_trip_through_the_commands`)는 `src/api.ts`가 보내는 것과 같은 JSON으로 `convert`, `cancel` 명령을 부릅니다. 인자 이름 `outputDir`를 일부러 틀리게 바꾸면 실패하는 것까지 확인했습니다.
+- 계약 테스트(`src-tauri/src/lib.rs`의 `frontend_payloads_round_trip_through_the_commands`)는 `src/services/tauri.ts`가 보내는 것과 같은 JSON으로 `convert`, `cancel` 명령을 부릅니다. 인자 이름 `outputDir`를 일부러 틀리게 바꾸면 실패하는 것까지 확인했습니다.
 - 화면은 두 가지로 확인했습니다. 하나는 실제 Tauri 창을 띄워 찍은 스크린샷(빈 목록 상태)입니다. 다른 하나는 Tauri API만 가짜로 바꾼 임시 미리보기 페이지를 headless Chrome으로 찍은 것입니다. 이 페이지는 실제 화면 코드에 드롭 이벤트와 진행률·완료·실패를 흘려 넣습니다. 미리보기 파일은 확인 후 지웠습니다.
 
 확인하지 못한 것은 다음과 같습니다.
@@ -42,7 +42,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 | 결정 | 이유 |
 | --- | --- |
 | FFmpeg를 sidecar로 동봉. Windows는 BtbN `n8.1` LGPL 정적 빌드, Mac 개발용은 eugeneware `b6.1.1` | 거의 모든 영상 형식을 지원하고 사용자가 따로 설치할 필요가 없음. LGPL 빌드에도 `libmp3lame`이 있음 |
-| 변환 로직은 `converter.rs`에 두고 tauri에 의존하지 않음. `lib.rs`는 얇은 어댑터 | 프레임워크 없이 실제 FFmpeg로 테스트하기 위해 |
+| 변환 로직은 `converter/` 모듈에 두고 tauri에 의존하지 않음. `lib.rs`는 얇은 어댑터 | 프레임워크 없이 실제 FFmpeg로 테스트하기 위해 |
 | 변환 전에 `ffmpeg -i`로 probe해서 오디오 코덱과 길이를 읽음 | 같은 코덱이면 복사(무손실), 오디오가 없으면 파일을 만들기 전에 바로 실패, 진행률 분모로 길이 사용 |
 | 형식별 동작은 표 하나(`plan`)에서 결정 | 형식이 늘어도 분기가 흩어지지 않음. 형식별 단위 테스트가 있음 |
 | `-ar`, `-ac` 옵션을 쓰지 않음 | 샘플레이트와 채널을 원본대로 유지. MP3는 형식 한계로 최대 48kHz·스테레오로 바뀜 |
@@ -50,11 +50,11 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 | 취소는 레지스트리 락을 쥔 채로 kill, wait, 파일 삭제까지 끝냄 | `Canceled`가 반환될 때 부분 파일이 이미 지워진 상태를 보장 |
 | 앱 종료 시 `cancel_all` | Windows는 부모가 죽어도 자식 프로세스를 정리하지 않음 |
 | Windows에서 `CREATE_NO_WINDOW` | 변환할 때마다 콘솔 창이 깜빡이지 않게 |
-| 동시 변환 2개 (`src/App.tsx`의 `MAX_PARALLEL`) | LAME 인코딩은 단일 스레드라 약간의 병렬이 이득 |
+| 동시 변환 2개 (`src/hooks/useJobQueue.ts`의 `MAX_PARALLEL`) | LAME 인코딩은 단일 스레드라 약간의 병렬이 이득 |
 | WiX 언어 `ko-KR` | MSI 기본 언어(en-US, 코드페이지 1252)는 한글 제작자명 `관태`를 담지 못함. CI에서 MSI 생성 성공 |
 | `build.rs`에서 MSVC 대상이면 매니페스트를 링커(`/MANIFEST:EMBED`)로 넣음 | tauri-build는 매니페스트를 앱 실행 파일에만 넣음. 테스트 실행 파일은 `TaskDialogIndirect`가 없는 공용 컨트롤 v5를 불러 `STATUS_ENTRYPOINT_NOT_FOUND`로 죽었음 |
 | `fetch-ffmpeg.mjs`는 압축 해제한 파일을 `rename` 대신 복사 | CI 러너는 임시 폴더(C:)와 저장소(D:)가 달라 `EXDEV`로 실패했음 |
-| 파형은 파일 경로를 시드로 만든 고정 모양(`src/Waveform.tsx`) | 파일마다 고유한 모양이라 목록에서 구분이 쉬움. 진행률만큼 왼쪽부터 초록으로 채움 |
+| 파형은 파일 경로를 시드로 만든 고정 모양(`src/domain/waveform.ts`) | 파일마다 고유한 모양이라 목록에서 구분이 쉬움. 진행률만큼 왼쪽부터 초록으로 채움 |
 | 진행 경계 근처 막대만 뛰고, 박자는 FFmpeg `speed=` 값을 구간 표(`TEMPO`)로 바꿔 정함 | 진행률이 잘 읽힘. 연속 값 대신 구간을 쓰는 이유는 실행 중인 CSS 애니메이션 길이를 바꾸면 막대가 튀기 때문. 길이를 모르는 영상은 막대 전체가 뜀 |
 | 글꼴은 IBM Plex Sans KR 400·600을 앱에 내장(`@fontsource`) | 오프라인에서도 같은 모양. 숫자 폭이 고정이라 %가 흔들리지 않음. `dist`가 약 5MB 늘어남 |
 | 권한은 `opener:allow-reveal-item-in-dir`, `dialog:allow-open`만 허용 | 필요한 최소 권한 |

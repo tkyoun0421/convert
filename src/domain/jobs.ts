@@ -13,12 +13,21 @@ export const VIDEO_EXTENSIONS = [
   "3gp",
 ];
 
+export interface Progress {
+  percent: number | null;
+  /** Processing speed as a multiple of real time (ffmpeg `speed=`). */
+  speed: number | null;
+}
+
 export type JobStatus =
   | { kind: "queued" }
-  | { kind: "converting"; percent: number | null; speed: number | null }
+  | ({ kind: "converting" } & Progress)
   | { kind: "done"; output: string; copied: boolean }
   | { kind: "failed"; message: string }
   | { kind: "canceled" };
+
+/** How a conversion that reached the converter ends. */
+export type ConvertResult = Extract<JobStatus, { kind: "done" | "failed" | "canceled" }>;
 
 export interface Job {
   id: number;
@@ -35,10 +44,8 @@ export interface JobsState {
 export type JobsAction =
   | { type: "add"; paths: string[] }
   | { type: "start"; id: number }
-  | { type: "progress"; id: number; percent: number | null; speed: number | null }
-  | { type: "finish"; id: number; output: string; copied: boolean }
-  | { type: "fail"; id: number; message: string }
-  | { type: "canceled"; id: number }
+  | ({ type: "progress"; id: number } & Progress)
+  | { type: "settle"; id: number; result: ConvertResult }
   | { type: "cancel"; id: number }
   | { type: "remove"; id: number }
   | { type: "clearFinished" };
@@ -63,6 +70,24 @@ export function isFinished(status: JobStatus): boolean {
   );
 }
 
+const countOf = (jobs: Job[], kind: JobStatus["kind"]) =>
+  jobs.filter((job) => job.status.kind === kind).length;
+
+export const queuedCount = (jobs: Job[]) => countOf(jobs, "queued");
+
+export const hasFinished = (jobs: Job[]) => jobs.some((job) => isFinished(job.status));
+
+/** Nothing is waiting or converting. */
+export const isIdle = (jobs: Job[]) => jobs.every((job) => isFinished(job.status));
+
+/** Queued jobs that fit into the free conversion slots, oldest first. */
+export function jobsToLaunch(jobs: Job[], maxParallel: number): Job[] {
+  return jobs
+    .filter((job) => job.status.kind === "queued")
+    .slice(0, maxParallel - countOf(jobs, "converting"));
+}
+
+/** Moves one job to `status` only from the `from` state, so late or repeated events do nothing. */
 function setStatus(
   state: JobsState,
   id: number,
@@ -109,19 +134,8 @@ export function jobsReducer(state: JobsState, action: JobsAction): JobsState {
         percent: action.percent,
         speed: action.speed,
       });
-    case "finish":
-      return setStatus(state, action.id, "converting", {
-        kind: "done",
-        output: action.output,
-        copied: action.copied,
-      });
-    case "fail":
-      return setStatus(state, action.id, "converting", {
-        kind: "failed",
-        message: action.message,
-      });
-    case "canceled":
-      return setStatus(state, action.id, "converting", { kind: "canceled" });
+    case "settle":
+      return setStatus(state, action.id, "converting", action.result);
     case "cancel":
       return setStatus(state, action.id, "queued", { kind: "canceled" });
     case "remove":

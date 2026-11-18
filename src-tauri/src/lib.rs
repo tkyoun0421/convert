@@ -154,7 +154,7 @@ mod tests {
         .map(|b| b.deserialize::<Value>().unwrap())
     }
 
-    /// Payloads shaped exactly like `src/api.ts` sends them.
+    /// Payloads shaped exactly like `src/services/tauri.ts` sends them.
     #[test]
     fn frontend_payloads_round_trip_through_the_commands() {
         let dir = tempfile::tempdir().unwrap();

@@ -1,25 +1,6 @@
-import { isFinished, type Job } from "./jobs";
+import { isFinished, type Job } from "../domain/jobs";
+import { formatSpeed, statusText } from "../domain/labels";
 import { Waveform } from "./Waveform";
-
-function statusText(job: Job): string {
-  const { status } = job;
-  switch (status.kind) {
-    case "queued":
-      return "대기";
-    case "converting":
-      return status.percent === null ? "변환 중" : `${Math.floor(status.percent)}%`;
-    case "done":
-      return status.copied ? "무손실 복사 완료" : "완료";
-    case "failed":
-      return "실패";
-    case "canceled":
-      return "취소됨";
-  }
-}
-
-function formatSpeed(speed: number): string {
-  return `${speed < 10 ? speed.toFixed(1) : Math.round(speed)}배속`;
-}
 
 interface JobRowProps {
   job: Job;
@@ -40,9 +21,9 @@ export function JobRow({ job, onCancel, onReveal, onRemove }: JobRowProps) {
         {status.kind === "converting" && status.speed !== null && (
           <span className="job-speed">{formatSpeed(status.speed)}</span>
         )}
-        <span className="job-status">{statusText(job)}</span>
+        <span className="job-status">{statusText(status)}</span>
         <div className="job-actions">
-          {(status.kind === "queued" || converting) && (
+          {!isFinished(status) && (
             <button type="button" className="quiet" onClick={onCancel}>
               취소
             </button>

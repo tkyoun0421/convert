@@ -1,11 +1,20 @@
 import { describe, expect, it, test } from "vitest";
-import { initialJobs, isVideoPath, jobsReducer, type JobsAction, type JobsState } from "./jobs";
+import {
+  initialJobs,
+  isVideoPath,
+  jobsReducer,
+  type ConvertResult,
+  type JobsAction,
+  type JobsState,
+} from "./jobs";
 
 function run(...actions: JobsAction[]): JobsState {
   return actions.reduce(jobsReducer, initialJobs);
 }
 
 const statuses = (state: JobsState) => state.jobs.map((job) => job.status.kind);
+const settle = (result: ConvertResult): JobsAction => ({ type: "settle", id: 1, result });
+const DONE: ConvertResult = { kind: "done", output: "a.mp3", copied: true };
 
 describe("jobsReducer", () => {
   it("추가한 경로마다 이어지는 번호와 파일 이름을 붙이고 중복은 버린다", () => {
@@ -38,8 +47,7 @@ describe("jobsReducer", () => {
     expect(run(add, { type: "progress", id: 1, percent: 5, speed: 1 }).jobs[0].status).toEqual({
       kind: "queued",
     });
-    expect(run(add, { type: "finish", id: 1, output: "a.mp3", copied: true }).jobs[0].status)
-      .toEqual({ kind: "queued" });
+    expect(run(add, settle(DONE)).jobs[0].status).toEqual({ kind: "queued" });
 
     const started = run(add, { type: "start", id: 1 });
     expect(started.jobs[0].status).toEqual({ kind: "converting", percent: null, speed: null });
@@ -48,32 +56,30 @@ describe("jobsReducer", () => {
     const progressed = jobsReducer(started, { type: "progress", id: 1, percent: 5, speed: 2 });
     expect(progressed.jobs[0].status).toEqual({ kind: "converting", percent: 5, speed: 2 });
 
-    const done = jobsReducer(progressed, { type: "finish", id: 1, output: "a.mp3", copied: true });
+    const done = jobsReducer(progressed, settle(DONE));
     expect(done.jobs[0].status).toEqual({ kind: "done", output: "a.mp3", copied: true });
-    expect(jobsReducer(done, { type: "fail", id: 1, message: "x" })).toEqual(done);
-    expect(jobsReducer(done, { type: "canceled", id: 1 })).toEqual(done);
+    expect(jobsReducer(done, settle({ kind: "failed", message: "x" }))).toEqual(done);
+    expect(jobsReducer(done, settle({ kind: "canceled" }))).toEqual(done);
   });
 
   it("취소는 대기 항목에만, 취소 결과는 변환 중 항목에만 적용된다", () => {
     const add: JobsAction = { type: "add", paths: ["a.mp4"] };
+    const start: JobsAction = { type: "start", id: 1 };
     expect(statuses(run(add, { type: "cancel", id: 1 }))).toEqual(["canceled"]);
-    expect(statuses(run(add, { type: "canceled", id: 1 }))).toEqual(["queued"]);
-    expect(statuses(run(add, { type: "start", id: 1 }, { type: "cancel", id: 1 }))).toEqual([
-      "converting",
-    ]);
-    expect(statuses(run(add, { type: "start", id: 1 }, { type: "canceled", id: 1 }))).toEqual([
-      "canceled",
-    ]);
-    expect(
-      run(add, { type: "start", id: 1 }, { type: "fail", id: 1, message: "x" }).jobs[0].status,
-    ).toEqual({ kind: "failed", message: "x" });
+    expect(statuses(run(add, settle({ kind: "canceled" })))).toEqual(["queued"]);
+    expect(statuses(run(add, start, { type: "cancel", id: 1 }))).toEqual(["converting"]);
+    expect(statuses(run(add, start, settle({ kind: "canceled" })))).toEqual(["canceled"]);
+    expect(run(add, start, settle({ kind: "failed", message: "x" })).jobs[0].status).toEqual({
+      kind: "failed",
+      message: "x",
+    });
   });
 
   it("제거와 완료 항목 지우기는 끝난 항목만 없앤다", () => {
     const state = run(
       { type: "add", paths: ["a.mp4", "b.mp4", "c.mp4", "d.mp4"] },
       { type: "start", id: 1 },
-      { type: "finish", id: 1, output: "a.mp3", copied: false },
+      settle({ kind: "done", output: "a.mp3", copied: false }),
       { type: "start", id: 2 },
       { type: "cancel", id: 3 },
     );
