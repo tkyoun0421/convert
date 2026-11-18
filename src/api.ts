@@ -23,6 +23,12 @@ export type ConvertError =
   | { kind: "noAudioStream" }
   | { kind: "failed"; message: string };
 
+export interface Progress {
+  percent: number | null;
+  /** Processing speed as a multiple of real time (ffmpeg `speed=`). */
+  speed: number | null;
+}
+
 export interface ConvertOutcome {
   output: string;
   copied: boolean;
@@ -38,9 +44,9 @@ export interface ConvertArgs {
 
 export function convertFile(
   args: ConvertArgs,
-  onProgress: (percent: number) => void,
+  onProgress: (progress: Progress) => void,
 ): Promise<ConvertOutcome> {
-  const channel = new Channel<number>();
+  const channel = new Channel<Progress>();
   channel.onmessage = onProgress;
   return invoke<ConvertOutcome>("convert", { ...args, onProgress: channel });
 }

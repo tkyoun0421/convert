@@ -90,13 +90,17 @@ fn aac_video_is_encoded_at_requested_bitrate() {
     make_video(&input, 3, Some("aac"));
     let registry = Registry::default();
     let mut progress = Vec::new();
+    let mut speeds = Vec::new();
 
     let outcome = converter::convert(
         &ffmpeg(),
         1,
         &request(&input, None, Bitrate::K320),
         &registry,
-        |p| progress.push(p),
+        |p| {
+            progress.extend(p.percent);
+            speeds.extend(p.speed);
+        },
     )
     .unwrap();
 
@@ -110,6 +114,8 @@ fn aac_video_is_encoded_at_requested_bitrate() {
     assert_eq!(audio_kbps(&info), 320);
     assert!(!progress.is_empty(), "progress was reported");
     assert!(progress.iter().all(|p| (0.0..=100.0).contains(p)));
+    assert!(!speeds.is_empty(), "speed was reported");
+    assert!(speeds.iter().all(|s| *s > 0.0));
 }
 
 #[test]
@@ -235,8 +241,10 @@ fn cancel_stops_conversion_and_removes_output() {
         &request(&input, None, Bitrate::K128),
         &registry,
         |p| {
-            progress.push(p);
-            converter::cancel(&registry, 7);
+            if let Some(percent) = p.percent {
+                progress.push(percent);
+                converter::cancel(&registry, 7);
+            }
         },
     );
 

@@ -2,6 +2,26 @@ import { useMemo, type CSSProperties } from "react";
 import type { JobStatus } from "./jobs";
 
 const BARS = 80;
+/** Bars around the progress edge that move with the beat: this many behind it, and ahead. */
+const LIVE_BEHIND = 6;
+const LIVE_AHEAD = 2;
+
+/**
+ * Beat length per speed band (seconds). Bands instead of a continuous curve,
+ * because changing a running CSS animation's duration makes the bars jump.
+ */
+const TEMPO: { upTo: number; beat: number }[] = [
+  { upTo: 2, beat: 1.0 },
+  { upTo: 8, beat: 0.72 },
+  { upTo: 30, beat: 0.52 },
+  { upTo: 100, beat: 0.38 },
+  { upTo: Infinity, beat: 0.27 },
+];
+
+function beatSeconds(speed: number | null): number {
+  if (speed === null) return TEMPO[1].beat;
+  return TEMPO.find((t) => speed <= t.upTo)!.beat;
+}
 
 function hash(text: string): number {
   let h = 0x811c9dc5;
@@ -41,21 +61,28 @@ function filledBars(status: JobStatus): number {
   return 0;
 }
 
+/** Which bars move: around the progress edge, or all of them when the length is unknown. */
+function isLive(status: JobStatus, filled: number, i: number): boolean {
+  if (status.kind !== "converting") return false;
+  if (status.percent === null) return true;
+  return i >= filled - LIVE_BEHIND && i < filled + LIVE_AHEAD;
+}
+
 export function Waveform({ seed, status }: { seed: string; status: JobStatus }) {
   const heights = useMemo(() => waveformHeights(seed), [seed]);
   const filled = filledBars(status);
-  const pending = status.kind === "converting" && status.percent === null;
+  const beat = beatSeconds(status.kind === "converting" ? status.speed : null);
   return (
     <div
-      className={`wave wave-${status.kind}${pending ? " wave-pending" : ""}`}
-      style={{ "--bars": BARS } as CSSProperties}
+      className={`wave wave-${status.kind}`}
+      style={{ "--bars": BARS, "--beat": `${beat}s` } as CSSProperties}
       aria-hidden
     >
       {heights.map((h, i) => (
         <span
           key={i}
-          className={i < filled ? "bar on" : "bar"}
-          style={{ "--h": h, "--i": i } as CSSProperties}
+          className={`bar${i < filled ? " on" : ""}${isLive(status, filled, i) ? " live" : ""}`}
+          style={{ "--h": h, "--phase": (i * 0.618) % 1 } as CSSProperties}
         />
       ))}
     </div>

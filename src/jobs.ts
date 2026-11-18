@@ -15,7 +15,7 @@ export const VIDEO_EXTENSIONS = [
 
 export type JobStatus =
   | { kind: "queued" }
-  | { kind: "converting"; percent: number | null }
+  | { kind: "converting"; percent: number | null; speed: number | null }
   | { kind: "done"; output: string; copied: boolean }
   | { kind: "failed"; message: string }
   | { kind: "canceled" };
@@ -35,7 +35,7 @@ export interface JobsState {
 export type JobsAction =
   | { type: "add"; paths: string[] }
   | { type: "start"; id: number }
-  | { type: "progress"; id: number; percent: number }
+  | { type: "progress"; id: number; percent: number | null; speed: number | null }
   | { type: "finish"; id: number; output: string; copied: boolean }
   | { type: "fail"; id: number; message: string }
   | { type: "canceled"; id: number }
@@ -101,11 +101,13 @@ export function jobsReducer(state: JobsState, action: JobsAction): JobsState {
       return setStatus(state, action.id, "queued", {
         kind: "converting",
         percent: null,
+        speed: null,
       });
     case "progress":
       return setStatus(state, action.id, "converting", {
         kind: "converting",
         percent: action.percent,
+        speed: action.speed,
       });
     case "finish":
       return setStatus(state, action.id, "converting", {

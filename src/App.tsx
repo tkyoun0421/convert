@@ -138,7 +138,8 @@ export default function App() {
       const { format, bitrate, outputDir } = settingsRef.current;
       convertFile(
         { id: job.id, input: job.input, outputDir, format, bitrate },
-        (percent) => dispatch({ type: "progress", id: job.id, percent }),
+        ({ percent, speed }) =>
+          dispatch({ type: "progress", id: job.id, percent, speed }),
       ).then(
         (outcome) =>
           dispatch({

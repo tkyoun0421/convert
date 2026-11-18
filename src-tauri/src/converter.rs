@@ -85,6 +85,14 @@ pub struct ConvertOutcome {
     pub copied: bool,
 }
 
+/// One `-progress` report. `percent` is `None` when the input length is unknown.
+#[derive(Clone, Copy, Debug, PartialEq, Serialize)]
+pub struct Progress {
+    pub percent: Option<f64>,
+    /// Processing speed as a multiple of real time, from ffmpeg's `speed=52.3x`.
+    pub speed: Option<f64>,
+}
+
 #[derive(Debug, Default, PartialEq, Eq)]
 pub struct Probe {
     pub duration_us: Option<u64>,
@@ -130,6 +138,18 @@ pub fn parse_duration_line(line: &str) -> Option<u64> {
 /// `-progress` line `out_time_us=<n>`. `N/A` and negative values give `None`.
 pub fn parse_out_time_us(line: &str) -> Option<u64> {
     line.strip_prefix("out_time_us=")?.trim().parse().ok()
+}
+
+/// `-progress` line `speed=52.3x`. `N/A` and non-positive values give `None`.
+pub fn parse_speed(line: &str) -> Option<f64> {
+    let value: f64 = line
+        .strip_prefix("speed=")?
+        .trim()
+        .strip_suffix('x')?
+        .trim()
+        .parse()
+        .ok()?;
+    (value.is_finite() && value > 0.0).then_some(value)
 }
 
 pub fn percent(out_time_us: u64, duration_us: Option<u64>) -> Option<f64> {
@@ -334,7 +354,7 @@ pub fn convert(
     id: JobId,
     req: &ConvertRequest,
     registry: &Registry,
-    mut on_progress: impl FnMut(f64),
+    mut on_progress: impl FnMut(Progress),
 ) -> Result<ConvertOutcome, ConvertError> {
     let probed = probe(ffmpeg, &req.input)?;
     let Some(codec) = probed.first_audio_codec.as_deref() else {
@@ -373,9 +393,18 @@ pub fn convert(
         Vec::from(tail)
     });
 
+    let mut out_time_us = None;
+    let mut speed = None;
     for_each_line(stdout, |line| {
-        if let Some(p) = parse_out_time_us(line).and_then(|us| percent(us, probed.duration_us)) {
-            on_progress(p);
+        if line.starts_with("out_time_us=") {
+            out_time_us = parse_out_time_us(line);
+        } else if line.starts_with("speed=") {
+            speed = parse_speed(line);
+        } else if line.starts_with("progress=") {
+            let percent = out_time_us.and_then(|us| percent(us, probed.duration_us));
+            if percent.is_some() || speed.is_some() {
+                on_progress(Progress { percent, speed });
+            }
         }
     });
 
@@ -443,6 +472,16 @@ mod tests {
         assert_eq!(parse_out_time_us("out_time_us=N/A"), None);
         assert_eq!(parse_out_time_us("out_time_us=-9223372036854775807"), None);
         assert_eq!(parse_out_time_us("progress=continue"), None);
+    }
+
+    #[test]
+    fn speed_reads_multiplier_and_ignores_na() {
+        assert_eq!(parse_speed("speed=52.3x"), Some(52.3));
+        assert_eq!(parse_speed("speed=   1.5x"), Some(1.5));
+        assert_eq!(parse_speed("speed=1e+03x"), Some(1000.0));
+        assert_eq!(parse_speed("speed=N/A"), None);
+        assert_eq!(parse_speed("speed=0x"), None);
+        assert_eq!(parse_speed("bitrate=128.0kbits/s"), None);
     }
 
     #[test]

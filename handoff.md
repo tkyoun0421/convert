@@ -13,7 +13,7 @@ Windows에서 영상 파일의 오디오 트랙을 꺼내 MP3 등으로 저장�
 - 음질이 떨어지지 않을 것. 기본 320 kbps, 같은 코덱이면 다시 인코딩하지 않고 복사
 - 출력 형식 선택: MP3(기본), M4A, FLAC, WAV, 원본 형식 그대로
 - 제작자 표시: `Copyright © 2026 관태`
-- 디자인: 파형 모양 진행률. 색은 "숲속 벽돌집" 느낌(흰 바탕, 벽돌 갈색, 숲 초록, 네이비 글자). 다크 모드는 필요 없음
+- 디자인: 파형 모양 진행률. 진행 경계 근처 막대가 처리 속도(배속)에 맞춘 박자로 뜀. 색은 "숲속 벽돌집" 느낌(흰 바탕, 벽돌 갈색, 숲 초록, 네이비 글자). 다크 모드는 필요 없음
 - Windows 설치 파일은 GitHub Actions에서 빌드 (개발 기기는 macOS arm64)
 
 ## 현재 상태
@@ -24,7 +24,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 
 - Windows용 FFmpeg 8.1로 `cargo test` 29개가 모두 통과했습니다. 단위 테스트 14개, 화면↔Rust 호출 계약 테스트 1개, 실제 FFmpeg로 변환하는 통합 테스트 14개입니다.
 - 설치 파일이 두 개 만들어졌습니다. `VideoToMP3_0.1.0_x64-setup.exe`(NSIS, 40.63 MiB)와 `VideoToMP3_0.1.0_x64_ko-KR.msi`(54.18 MiB)입니다. 아티팩트 이름은 `VideoToMP3-windows`입니다.
-- 이 실행은 디자인 변경 전 커밋입니다. 그 뒤 커밋(디자인, README, 색상)의 CI는 이 문서를 쓰는 시점에 돌고 있었습니다.
+- 벽돌 팔레트를 반영한 커밋 `82f20c1`의 CI도 성공했습니다. 그 뒤 박자 기능 커밋의 CI는 이 문서를 쓰는 시점에 돌고 있었습니다.
 
 이 Mac에서 확인한 것은 다음과 같습니다.
 
@@ -35,7 +35,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 확인하지 못한 것은 다음과 같습니다.
 
 - **실제 앱에서 파일을 골라 끝까지 변환하는 과정.** macOS 파일 선택 창은 별도 프로세스라 자동 클릭이 사이드바에만 먹혔습니다. Windows 실기기에서도 아직 설치해 보지 않았습니다.
-- **최종 색상의 실제 Tauri 창 모습.** 벽돌 팔레트는 미리보기 페이지로만 확인했습니다.
+- **최종 색상과 박자 움직임의 실제 Tauri 창 모습.** 둘 다 가짜 Tauri API를 쓴 미리보기·데모 페이지로만 확인했습니다. 사용자는 데모에서 "재생 위치만 뜀(B)"을 골랐습니다.
 
 ## 설계 결정과 이유
 
@@ -55,6 +55,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 | `build.rs`에서 MSVC 대상이면 매니페스트를 링커(`/MANIFEST:EMBED`)로 넣음 | tauri-build는 매니페스트를 앱 실행 파일에만 넣음. 테스트 실행 파일은 `TaskDialogIndirect`가 없는 공용 컨트롤 v5를 불러 `STATUS_ENTRYPOINT_NOT_FOUND`로 죽었음 |
 | `fetch-ffmpeg.mjs`는 압축 해제한 파일을 `rename` 대신 복사 | CI 러너는 임시 폴더(C:)와 저장소(D:)가 달라 `EXDEV`로 실패했음 |
 | 파형은 파일 경로를 시드로 만든 고정 모양(`src/Waveform.tsx`) | 파일마다 고유한 모양이라 목록에서 구분이 쉬움. 진행률만큼 왼쪽부터 초록으로 채움 |
+| 진행 경계 근처 막대만 뛰고, 박자는 FFmpeg `speed=` 값을 구간 표(`TEMPO`)로 바꿔 정함 | 진행률이 잘 읽힘. 연속 값 대신 구간을 쓰는 이유는 실행 중인 CSS 애니메이션 길이를 바꾸면 막대가 튀기 때문. 길이를 모르는 영상은 막대 전체가 뜀 |
 | 글꼴은 IBM Plex Sans KR 400·600을 앱에 내장(`@fontsource`) | 오프라인에서도 같은 모양. 숫자 폭이 고정이라 %가 흔들리지 않음. `dist`가 약 5MB 늘어남 |
 | 권한은 `opener:allow-reveal-item-in-dir`, `dialog:allow-open`만 허용 | 필요한 최소 권한 |
 
@@ -80,7 +81,7 @@ Windows CI(`.github/workflows/windows.yml`)는 커밋 `25f9691`에서 처음 성
 - Rust는 이번 작업 중 rustup으로 설치했습니다. 새 터미널이 아니면 `source "$HOME/.cargo/env"`를 먼저 실행합니다.
 - 로컬 pnpm은 8.15.2이고 `package.json`의 `packageManager`도 같은 버전입니다. lockfile 형식이 바뀌지 않게 같은 버전을 씁니다.
 - `src-tauri/binaries/`는 Git에 올라가지 않습니다. 새로 clone하면 `node scripts/fetch-ffmpeg.mjs`부터 실행합니다.
-- 진행률은 FFmpeg `-progress`의 `out_time_us`를 probe한 길이로 나눈 값입니다. 길이를 모르는 영상이면 진행률 없이 파형이 천천히 깜빡이고 "변환 중"을 보여 줍니다.
+- 진행 정보는 `Progress { percent, speed }`로 채널에 실려 옵니다. `percent`는 FFmpeg `-progress`의 `out_time_us`를 probe한 길이로 나눈 값이고, `speed`는 `speed=52.3x`의 배속입니다. 길이를 모르는 영상이면 `percent`가 `null`이고 "변환 중"을 보여 줍니다.
 - 디자인 작업에는 Anthropic 공식 `frontend-design` 스킬(`anthropics/skills`)을 받아 `~/.claude/skills/frontend-design`에 설치해서 썼습니다.
 - 제작자 이름은 사용자가 쓴 그대로 `관태`로 넣었습니다. Git 사용자 이름은 `태관`이라 다릅니다. 둘 중 무엇이 맞는지 사용자에게 확인하세요.
 - `todo.md`는 작업용 체크리스트이고 `.git/info/exclude`로 Git에서 제외했습니다.

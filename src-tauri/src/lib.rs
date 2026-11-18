@@ -5,7 +5,7 @@ use std::path::PathBuf;
 use std::sync::Arc;
 
 use converter::{
-    Bitrate, ConvertError, ConvertOutcome, ConvertRequest, JobId, OutputFormat, Registry,
+    Bitrate, ConvertError, ConvertOutcome, ConvertRequest, JobId, OutputFormat, Progress, Registry,
 };
 use tauri::ipc::Channel;
 use tauri::{AppHandle, Manager, RunEvent, Runtime};
@@ -28,7 +28,7 @@ async fn convert<R: Runtime>(
     output_dir: Option<PathBuf>,
     format: OutputFormat,
     bitrate: Bitrate,
-    on_progress: Channel<f64>,
+    on_progress: Channel<Progress>,
 ) -> Result<ConvertOutcome, ConvertError> {
     let registry = Arc::clone(&app.state::<Arc<Registry>>());
     let ffmpeg = app.state::<Ffmpeg>().0.clone();
@@ -39,8 +39,8 @@ async fn convert<R: Runtime>(
         bitrate,
     };
     tauri::async_runtime::spawn_blocking(move || {
-        converter::convert(&ffmpeg, id, &req, &registry, |percent| {
-            let _ = on_progress.send(percent);
+        converter::convert(&ffmpeg, id, &req, &registry, |progress| {
+            let _ = on_progress.send(progress);
         })
     })
     .await

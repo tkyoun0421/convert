@@ -17,6 +17,10 @@ function statusText(job: Job): string {
   }
 }
 
+function formatSpeed(speed: number): string {
+  return `${speed < 10 ? speed.toFixed(1) : Math.round(speed)}배속`;
+}
+
 interface JobRowProps {
   job: Job;
   onCancel: () => void;
@@ -33,6 +37,9 @@ export function JobRow({ job, onCancel, onReveal, onRemove }: JobRowProps) {
         <span className="job-name" title={job.input}>
           {job.name}
         </span>
+        {status.kind === "converting" && status.speed !== null && (
+          <span className="job-speed">{formatSpeed(status.speed)}</span>
+        )}
         <span className="job-status">{statusText(job)}</span>
         <div className="job-actions">
           {(status.kind === "queued" || converting) && (
