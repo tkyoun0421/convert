@@ -287,8 +287,34 @@ select.narrow {
 }
 
 .empty {
-  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 48px 0 24px;
   color: var(--muted);
+}
+
+.empty-art {
+  width: 64px;
+  height: 56px;
+  overflow: visible;
+}
+
+.empty-art path {
+  stroke: color-mix(in srgb, var(--brick) 35%, var(--wave-idle));
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.empty-inside {
+  fill: var(--brick-wash);
+}
+
+.empty-face,
+.empty-flap {
+  fill: var(--surface);
 }
 
 .jobs {

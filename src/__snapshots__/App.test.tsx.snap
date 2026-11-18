@@ -2927,7 +2927,7 @@ exports[`변환 > 화면 전체: 진행 중 상태 1`] = `
 </DocumentFragment>
 `;
 
-exports[`파일 추가 > 빈 목록 안내와 비활성 버튼을 보여 준다 1`] = `
+exports[`파일 추가 > 빈 목록은 빈 상자 그림과 비어 있음을 보여 주고 버튼은 비활성이다 1`] = `
 <DocumentFragment>
   <div
     class="app"
@@ -3076,11 +3076,39 @@ exports[`파일 추가 > 빈 목록 안내와 비활성 버튼을 보여 준다 
           </div>
         </div>
       </section>
-      <p
+      <div
         class="empty"
       >
-        추가한 영상이 여기에 표시됩니다.
-      </p>
+        <svg
+          aria-hidden="true"
+          class="empty-art"
+          viewBox="0 0 64 56"
+        >
+          <path
+            class="empty-inside"
+            d="M10 22 32 12l22 10-22 10Z"
+          />
+          <path
+            class="empty-face"
+            d="M10 22 32 32v22L10 44Z"
+          />
+          <path
+            class="empty-face"
+            d="M54 22 32 32v22l22-10Z"
+          />
+          <path
+            class="empty-flap"
+            d="M10 22 3 31l22 10 7-9"
+          />
+          <path
+            class="empty-flap"
+            d="M54 22l7 9-22 10-7-9"
+          />
+        </svg>
+        <p>
+          비어 있음
+        </p>
+      </div>
     </main>
     <footer
       class="actionbar"

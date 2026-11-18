@@ -10,7 +10,18 @@ interface JobListProps {
 
 export function JobList({ jobs, onCancel, onReveal, onRemove }: JobListProps) {
   if (jobs.length === 0) {
-    return <p className="empty">추가한 영상이 여기에 표시됩니다.</p>;
+    return (
+      <div className="empty">
+        <svg className="empty-art" viewBox="0 0 64 56" aria-hidden>
+          <path className="empty-inside" d="M10 22 32 12l22 10-22 10Z" />
+          <path className="empty-face" d="M10 22 32 32v22L10 44Z" />
+          <path className="empty-face" d="M54 22 32 32v22l22-10Z" />
+          <path className="empty-flap" d="M10 22 3 31l22 10 7-9" />
+          <path className="empty-flap" d="M54 22l7 9-22 10-7-9" />
+        </svg>
+        <p>비어 있음</p>
+      </div>
+    );
   }
   return (
     <ul className="jobs">

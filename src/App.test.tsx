@@ -141,9 +141,11 @@ describe("설정", () => {
 });
 
 describe("파일 추가", () => {
-  it("빈 목록 안내와 비활성 버튼을 보여 준다", async () => {
+  it("빈 목록은 빈 상자 그림과 비어 있음을 보여 주고 버튼은 비활성이다", async () => {
     const { asFragment } = await renderApp();
-    expect(screen.getByText("추가한 영상이 여기에 표시됩니다.")).toBeTruthy();
+    const empty = screen.getByText("비어 있음").parentElement!;
+    expect(empty.querySelector("svg")!.getAttribute("aria-hidden")).toBe("true");
+    expect(screen.queryByRole("list")).toBeNull();
     expect(startButton().textContent).toBe("변환 시작 (0개)");
     expect((startButton() as HTMLButtonElement).disabled).toBe(true);
     expect(
@@ -396,6 +398,7 @@ describe("변환", () => {
 
     await click(actions.getByRole("button", { name: "목록에서 제거" }));
     expect(rowNames()).toEqual([]);
+    expect(screen.getByText("비어 있음")).toBeTruthy();
   });
 
   test.each([
