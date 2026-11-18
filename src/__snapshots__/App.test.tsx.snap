@@ -1,0 +1,3110 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`변환 > 화면 전체: 끝난 상태 1`] = `
+<DocumentFragment>
+  <div
+    class="app"
+  >
+    <header
+      class="masthead"
+    >
+      <h1>
+        VideoToMP3
+      </h1>
+    </header>
+    <main
+      class="content"
+    >
+      <section
+        aria-label="영상 추가"
+        class="drop"
+      >
+        <span
+          aria-hidden="true"
+          class="drop-glyph"
+        >
+          <i />
+          <i />
+          <i />
+          <i />
+          <i />
+        </span>
+        <div
+          class="drop-text"
+        >
+          <p
+            class="drop-title"
+          >
+            영상 파일을 여기로 끌어다 놓으세요
+          </p>
+          <p
+            class="drop-formats"
+          >
+            mp4, mkv, avi, mov, webm 등
+          </p>
+        </div>
+        <button
+          type="button"
+        >
+          파일 선택…
+        </button>
+      </section>
+      <section
+        class="settings"
+      >
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            출력
+          </span>
+          <div
+            class="setting-control"
+          >
+            <div
+              class="setting-inline"
+            >
+              <select
+                aria-label="출력 형식"
+              >
+                <option
+                  value="mp3"
+                >
+                  MP3 (기본)
+                </option>
+                <option
+                  value="m4a"
+                >
+                  M4A (AAC)
+                </option>
+                <option
+                  value="flac"
+                >
+                  FLAC (무손실)
+                </option>
+                <option
+                  value="wav"
+                >
+                  WAV (무손실·비압축)
+                </option>
+                <option
+                  value="original"
+                >
+                  원본 형식 그대로 (무손실)
+                </option>
+              </select>
+              <select
+                aria-describedby="bitrate-hint"
+                aria-label="음질"
+                class="narrow"
+              >
+                <option
+                  value="128"
+                >
+                  128 kbps
+                </option>
+                <option
+                  value="192"
+                >
+                  192 kbps
+                </option>
+                <option
+                  value="320"
+                >
+                  320 kbps
+                </option>
+              </select>
+            </div>
+            <p
+              class="hint"
+              id="bitrate-hint"
+            >
+              320 kbps가 MP3 최고 음질입니다. 128·192 kbps는 파일이 작아지는 대신 음질이 낮아집니다. 원본이 MP3면 그대로 복사합니다.
+            </p>
+          </div>
+        </div>
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            저장 위치
+          </span>
+          <div
+            class="setting-control output-dir"
+          >
+            <span
+              class="path"
+            >
+              원본 영상과 같은 폴더
+            </span>
+            <button
+              type="button"
+            >
+              폴더 선택…
+            </button>
+          </div>
+        </div>
+      </section>
+      <ul
+        class="jobs"
+      >
+        <li
+          class="job job-done"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\a.mp4"
+            >
+              a.mp4
+            </span>
+            <span
+              class="job-status"
+            >
+              무손실 복사 완료
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                폴더에서 보기
+              </button>
+              <button
+                class="quiet"
+                type="button"
+              >
+                목록에서 제거
+              </button>
+            </div>
+          </div>
+          <div
+            class="job-wave"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-done"
+              style="--bars: 80; --beat: 0.72s;"
+            >
+              <span
+                class="bar on"
+                style="--h: 0.578109817039261; --phase: 0;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5609792371789456; --phase: 0.618;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.46997575491810706; --phase: 0.236;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6136145732485516; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5905197118344919; --phase: 0.472;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.61112834107077; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5044378198303331; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.573714064236545; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5609656103526942; --phase: 0.944;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.33766540666974415; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4988185442273836; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5725210180480712; --phase: 0.798;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.49879665240042736; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7977981390505211; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5783773535220604; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6904570916885711; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9056888868538553; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7761061887579805; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5972402220793036; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.584614761796435; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7659084866383132; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6355349397081592; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9807639183553422; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8585374009218087; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7034062038537403; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5179747534614787; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8354915112093511; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6192952436213038; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8991949902431267; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.866022054199037; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.622094220010914; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7314473539537839; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8944326429250996; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8614346515424652; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6154600433513243; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7372941188077964; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8255805168672691; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7577655188913602; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9560436512673468; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7649472459654999; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5971650427654491; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7061319617386069; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9618233786463634; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6229170835463876; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6483002479561092; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5811455989622405; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6837621889411879; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.78351417918807; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6779277087851503; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.34829141021625276; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6199491244301618; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4745961996361942; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5438175043251985; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7763302440794261; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.606120637547724; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9700262775632362; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.851506742240282; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9016080388535712; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.956345256408969; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8106435801176639; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6870478225020628; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7093127530958216; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9360081228105218; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5695637407587049; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9219251185050221; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7128799466640287; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7815262351636573; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.692548689647097; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6479736257921012; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.660815224281502; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8798152140464144; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.642256262424042; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6225521177102672; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.3815920896890057; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4729207402821745; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.30476229709765357; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.3873138945261977; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.27442561873640103; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.20073089954702503; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.15802053268672916; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          class="job job-failed"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\b.mp4"
+            >
+              b.mp4
+            </span>
+            <span
+              class="job-status"
+            >
+              실패
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                목록에서 제거
+              </button>
+            </div>
+          </div>
+          <div
+            class="job-wave"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-failed"
+              style="--bars: 80; --beat: 0.72s;"
+            >
+              <span
+                class="bar"
+                style="--h: 0.4854240592114387; --phase: 0;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5893585730554132; --phase: 0.618;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.37950450287539333; --phase: 0.236;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4592557856282971; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.32520698781256974; --phase: 0.472;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4450948121633496; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4095961085068457; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.46192982096068547; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3404574953906119; --phase: 0.944;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5067413686039666; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.24685343848495414; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.319137875694436; --phase: 0.798;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4336219737466124; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3546980079546188; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.2865226313566043; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5377824800098853; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.44096171825144054; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.45274340648035855; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5409275939390783; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5567989856391715; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.27420143112773737; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4131751789849107; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.45599157024445297; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8139564105033248; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6598436832066066; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6441303083553269; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9389572366277098; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6906653658471146; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.887433808822473; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8170370112486605; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6183455599415134; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5533745503776039; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6817474638775904; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6600835343082311; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6787891823323514; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8998964095767766; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7513533501785096; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6227520842864324; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9230968270481855; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7670208689618043; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.48432347933468745; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.778109333944913; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9967695381615997; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8302208425449065; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6588198923166187; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8337091233956226; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6336741910244175; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9810346277710364; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7565232257566427; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar"
+                style="--h: 1; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9322083033220765; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9597108254695355; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 1; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6548627260484614; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5778449051700858; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9403292127791579; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5731212064806108; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4439023150105969; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6012401504657585; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5403951688422254; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8057896124287998; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6769131928044141; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.46462794819154357; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.28810834612044944; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.33556635642710664; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5023785963056707; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.15681581665423527; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.22974950109587536; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.12945626560255846; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3854781601203346; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4643949519401416; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3055049013135463; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.2583623066509585; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4261810128965396; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5119283735023523; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5159202012578753; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.35762301345448305; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3007675082359408; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.405839715408313; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3911605708914906; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+          <p
+            class="job-error"
+          >
+            오디오 트랙이 없는 영상입니다
+          </p>
+        </li>
+        <li
+          class="job job-done"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\c.mp4"
+            >
+              c.mp4
+            </span>
+            <span
+              class="job-status"
+            >
+              완료
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                폴더에서 보기
+              </button>
+              <button
+                class="quiet"
+                type="button"
+              >
+                목록에서 제거
+              </button>
+            </div>
+          </div>
+          <div
+            class="job-wave"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-done"
+              style="--bars: 80; --beat: 0.72s;"
+            >
+              <span
+                class="bar on"
+                style="--h: 0.5530750826575913; --phase: 0;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.283366051418783; --phase: 0.618;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.33992886341031964; --phase: 0.236;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6444241422158028; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.514424138876842; --phase: 0.472;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7057790227034537; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.3856068825435815; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6458596557961445; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7841675079347007; --phase: 0.944;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7131601470716453; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5362319116969431; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4370049383819864; --phase: 0.798;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6365592297392405; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5389675551246147; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7014107031233239; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.602909355603496; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5804766500166019; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6534900290194399; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.635119409563971; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6338371917460912; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.395405939738745; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5504272576873928; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8911524842227752; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.846723126473477; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5187256381288553; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5648367271888441; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8405680511611968; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6606389457134475; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7475224596155984; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.563180104360185; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7149896267439192; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5766011292749976; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8657541142682325; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6636974806467754; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.764597664783157; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6351135265053828; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8468353556137054; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8151962205678158; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.758733607492022; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8153520251939186; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9399832091085585; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7772337021849004; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8117097169634389; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6944670225538964; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.35697015454473185; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7841165492360695; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6283536365107116; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.28846185100094984; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5184305162110936; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5276406803553584; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5173216149586637; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4334345679451246; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4938885217120847; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5657241496271731; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5497728251522139; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.32683446294470037; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.3435530615795674; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.39398160084977407; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4296985773471056; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.1987213543919054; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.47648042708003346; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6275951696232788; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.490801978039449; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.46448254810707834; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5213633959802423; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5949538751988837; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.31893782900893003; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5658143008804345; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.31644137067425765; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5162448057957658; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5523216840279602; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4023939076896862; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.3908738256712788; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5102537798252434; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6281573043894279; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6061640141002167; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8274185959681704; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7655169767479135; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7261454167096151; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6790485017765269; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          class="job job-canceled"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\d.mp4"
+            >
+              d.mp4
+            </span>
+            <span
+              class="job-status"
+            >
+              취소됨
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                목록에서 제거
+              </button>
+            </div>
+          </div>
+          <div
+            class="job-wave"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-canceled"
+              style="--bars: 80; --beat: 0.72s;"
+            >
+              <span
+                class="bar"
+                style="--h: 0.6262212898368594; --phase: 0;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.40087773672608046; --phase: 0.618;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6061652865713659; --phase: 0.236;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6832738604506831; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.39973548294448114; --phase: 0.472;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.44151203688662066; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5578791856131551; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5730111948471389; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.42448270608404093; --phase: 0.944;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.31858306195675007; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.40984232966740963; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7211997543047004; --phase: 0.798;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7296522658771615; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4681483263762042; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7304485944166195; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5911284439204351; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7840221436516631; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7552473507935052; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6509214124681147; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7161114129306453; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7382759224964657; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7067454955746925; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6955557532007727; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8750031938913009; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5440272068684164; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7394051329730221; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5549350362767721; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.44694979085292247; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6286619863728501; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8500256751830904; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8751597444824811; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6926695797997343; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.42129287735085796; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7144709822124705; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7779860391269645; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6214437343887348; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7530779789744768; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5619227499006998; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.750755574857418; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4863461464434692; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6763285025425622; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6925203709945653; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.92477249463745; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7941080630575518; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9913215057464957; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9981781678151691; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.945083280634446; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7877517609484311; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.843154260577129; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6395630024815737; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7831256538618347; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9135714472735394; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8108016700897063; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7682881191469382; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4979958337992731; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6142883097455822; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5686136628857407; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5699981579120365; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.27990709172071254; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.539767031081055; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6759668415614145; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.44261622747198176; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5682935595279038; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3568426055338131; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4330770111251141; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4402908957590323; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.39553865392635; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6296307955247447; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5474569528110695; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5644723550673609; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6958927187559607; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.781460427571875; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.47559309655524146; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4215829223490191; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.43874164352702294; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.64469975527172; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5545208880932226; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5475932662151507; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4514211407496058; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.310765071701183; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </main>
+    <footer
+      class="actionbar"
+    >
+      <span
+        class="copyright"
+      >
+        Copyright © 2026 관태
+      </span>
+      <button
+        class="quiet"
+        type="button"
+      >
+        완료 항목 지우기
+      </button>
+      <button
+        class="primary"
+        disabled=""
+        type="button"
+      >
+        변환 시작 (0개)
+      </button>
+    </footer>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`변환 > 화면 전체: 진행 중 상태 1`] = `
+<DocumentFragment>
+  <div
+    class="app dragging"
+  >
+    <header
+      class="masthead"
+    >
+      <h1>
+        VideoToMP3
+      </h1>
+    </header>
+    <main
+      class="content"
+    >
+      <section
+        aria-label="영상 추가"
+        class="drop"
+      >
+        <span
+          aria-hidden="true"
+          class="drop-glyph"
+        >
+          <i />
+          <i />
+          <i />
+          <i />
+          <i />
+        </span>
+        <div
+          class="drop-text"
+        >
+          <p
+            class="drop-title"
+          >
+            영상 파일을 여기로 끌어다 놓으세요
+          </p>
+          <p
+            class="drop-formats"
+          >
+            mp4, mkv, avi, mov, webm 등
+          </p>
+        </div>
+        <button
+          type="button"
+        >
+          파일 선택…
+        </button>
+      </section>
+      <section
+        class="settings"
+      >
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            출력
+          </span>
+          <div
+            class="setting-control"
+          >
+            <div
+              class="setting-inline"
+            >
+              <select
+                aria-label="출력 형식"
+                disabled=""
+              >
+                <option
+                  value="mp3"
+                >
+                  MP3 (기본)
+                </option>
+                <option
+                  value="m4a"
+                >
+                  M4A (AAC)
+                </option>
+                <option
+                  value="flac"
+                >
+                  FLAC (무손실)
+                </option>
+                <option
+                  value="wav"
+                >
+                  WAV (무손실·비압축)
+                </option>
+                <option
+                  value="original"
+                >
+                  원본 형식 그대로 (무손실)
+                </option>
+              </select>
+              <select
+                aria-describedby="bitrate-hint"
+                aria-label="음질"
+                class="narrow"
+                disabled=""
+              >
+                <option
+                  value="128"
+                >
+                  128 kbps
+                </option>
+                <option
+                  value="192"
+                >
+                  192 kbps
+                </option>
+                <option
+                  value="320"
+                >
+                  320 kbps
+                </option>
+              </select>
+            </div>
+            <p
+              class="hint"
+              id="bitrate-hint"
+            >
+              무손실 형식이라 비트레이트를 쓰지 않습니다. 대신 파일이 커집니다.
+            </p>
+          </div>
+        </div>
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            저장 위치
+          </span>
+          <div
+            class="setting-control output-dir"
+          >
+            <span
+              class="path"
+              title="D:\\out"
+            >
+              D:\\out
+            </span>
+            <button
+              disabled=""
+              type="button"
+            >
+              폴더 선택…
+            </button>
+            <button
+              class="quiet"
+              disabled=""
+              type="button"
+            >
+              원본 폴더로
+            </button>
+          </div>
+        </div>
+      </section>
+      <p
+        class="notice"
+        role="status"
+      >
+        영상 파일이 아닌 1개 파일은 건너뛰었습니다.
+      </p>
+      <ul
+        class="jobs"
+      >
+        <li
+          class="job job-converting"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\a.mp4"
+            >
+              a.mp4
+            </span>
+            <span
+              class="job-speed"
+            >
+              1.5배속
+            </span>
+            <span
+              class="job-status"
+            >
+              42%
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+          <div
+            aria-label="a.mp4 변환 진행률"
+            aria-valuemax="100"
+            aria-valuemin="0"
+            aria-valuenow="42.7"
+            class="job-wave"
+            role="progressbar"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-converting"
+              style="--bars: 80; --beat: 1s;"
+            >
+              <span
+                class="bar on"
+                style="--h: 0.578109817039261; --phase: 0;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5609792371789456; --phase: 0.618;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.46997575491810706; --phase: 0.236;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6136145732485516; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5905197118344919; --phase: 0.472;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.61112834107077; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5044378198303331; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.573714064236545; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5609656103526942; --phase: 0.944;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.33766540666974415; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.4988185442273836; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5725210180480712; --phase: 0.798;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.49879665240042736; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7977981390505211; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5783773535220604; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6904570916885711; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9056888868538553; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7761061887579805; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5972402220793036; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.584614761796435; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7659084866383132; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6355349397081592; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.9807639183553422; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8585374009218087; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.7034062038537403; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.5179747534614787; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.8354915112093511; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar on"
+                style="--h: 0.6192952436213038; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.8991949902431267; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.866022054199037; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.622094220010914; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.7314473539537839; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.8944326429250996; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar on live"
+                style="--h: 0.8614346515424652; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6154600433513243; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.7372941188077964; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8255805168672691; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7577655188913602; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9560436512673468; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7649472459654999; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5971650427654491; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7061319617386069; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9618233786463634; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6229170835463876; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6483002479561092; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5811455989622405; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6837621889411879; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.78351417918807; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6779277087851503; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.34829141021625276; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6199491244301618; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4745961996361942; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5438175043251985; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7763302440794261; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.606120637547724; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9700262775632362; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.851506742240282; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9016080388535712; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.956345256408969; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8106435801176639; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6870478225020628; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7093127530958216; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9360081228105218; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5695637407587049; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9219251185050221; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7128799466640287; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7815262351636573; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.692548689647097; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6479736257921012; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.660815224281502; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8798152140464144; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.642256262424042; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6225521177102672; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3815920896890057; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4729207402821745; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.30476229709765357; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3873138945261977; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.27442561873640103; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.20073089954702503; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.15802053268672916; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          class="job job-converting"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\b.mp4"
+            >
+              b.mp4
+            </span>
+            <span
+              class="job-speed"
+            >
+              53배속
+            </span>
+            <span
+              class="job-status"
+            >
+              변환 중
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+          <div
+            aria-label="b.mp4 변환 진행률"
+            aria-valuemax="100"
+            aria-valuemin="0"
+            class="job-wave"
+            role="progressbar"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-converting"
+              style="--bars: 80; --beat: 0.38s;"
+            >
+              <span
+                class="bar live"
+                style="--h: 0.4854240592114387; --phase: 0;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5893585730554132; --phase: 0.618;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.37950450287539333; --phase: 0.236;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4592557856282971; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.32520698781256974; --phase: 0.472;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4450948121633496; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4095961085068457; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.46192982096068547; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3404574953906119; --phase: 0.944;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5067413686039666; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.24685343848495414; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.319137875694436; --phase: 0.798;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4336219737466124; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3546980079546188; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.2865226313566043; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5377824800098853; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.44096171825144054; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.45274340648035855; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5409275939390783; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5567989856391715; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.27420143112773737; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4131751789849107; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.45599157024445297; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8139564105033248; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6598436832066066; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6441303083553269; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9389572366277098; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6906653658471146; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.887433808822473; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8170370112486605; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6183455599415134; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5533745503776039; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6817474638775904; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6600835343082311; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6787891823323514; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8998964095767766; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.7513533501785096; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6227520842864324; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9230968270481855; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.7670208689618043; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.48432347933468745; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.778109333944913; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9967695381615997; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8302208425449065; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6588198923166187; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8337091233956226; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6336741910244175; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9810346277710364; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.7565232257566427; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar live"
+                style="--h: 1; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9322083033220765; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9597108254695355; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar live"
+                style="--h: 1; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6548627260484614; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5778449051700858; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.9403292127791579; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5731212064806108; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4439023150105969; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6012401504657585; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5403951688422254; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.8057896124287998; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.6769131928044141; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.46462794819154357; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.28810834612044944; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.33556635642710664; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5023785963056707; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.15681581665423527; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.22974950109587536; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.12945626560255846; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3854781601203346; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4643949519401416; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3055049013135463; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.2583623066509585; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.4261810128965396; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5119283735023523; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.5159202012578753; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.35762301345448305; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3007675082359408; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.405839715408313; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar live"
+                style="--h: 0.3911605708914906; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+        <li
+          class="job job-queued"
+        >
+          <div
+            class="job-head"
+          >
+            <span
+              class="job-name"
+              title="C:\\v\\c.mp4"
+            >
+              c.mp4
+            </span>
+            <span
+              class="job-status"
+            >
+              대기
+            </span>
+            <div
+              class="job-actions"
+            >
+              <button
+                class="quiet"
+                type="button"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+          <div
+            class="job-wave"
+          >
+            <div
+              aria-hidden="true"
+              class="wave wave-queued"
+              style="--bars: 80; --beat: 0.72s;"
+            >
+              <span
+                class="bar"
+                style="--h: 0.5530750826575913; --phase: 0;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.283366051418783; --phase: 0.618;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.33992886341031964; --phase: 0.236;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6444241422158028; --phase: 0.8540000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.514424138876842; --phase: 0.472;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7057790227034537; --phase: 0.08999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3856068825435815; --phase: 0.7080000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6458596557961445; --phase: 0.3259999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7841675079347007; --phase: 0.944;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7131601470716453; --phase: 0.5620000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5362319116969431; --phase: 0.17999999999999972;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4370049383819864; --phase: 0.798;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6365592297392405; --phase: 0.41600000000000037;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5389675551246147; --phase: 0.034000000000000696;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7014107031233239; --phase: 0.6519999999999992;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.602909355603496; --phase: 0.2699999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5804766500166019; --phase: 0.8879999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6534900290194399; --phase: 0.5060000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.635119409563971; --phase: 0.12400000000000055;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6338371917460912; --phase: 0.7419999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.395405939738745; --phase: 0.35999999999999943;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5504272576873928; --phase: 0.9779999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8911524842227752; --phase: 0.5960000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.846723126473477; --phase: 0.2140000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5187256381288553; --phase: 0.8320000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5648367271888441; --phase: 0.4499999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8405680511611968; --phase: 0.06800000000000139;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6606389457134475; --phase: 0.6859999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7475224596155984; --phase: 0.3039999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.563180104360185; --phase: 0.9220000000000006;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7149896267439192; --phase: 0.5399999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5766011292749976; --phase: 0.15800000000000125;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8657541142682325; --phase: 0.7759999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6636974806467754; --phase: 0.39399999999999835;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.764597664783157; --phase: 0.012000000000000455;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6351135265053828; --phase: 0.629999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8468353556137054; --phase: 0.2480000000000011;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8151962205678158; --phase: 0.8659999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.758733607492022; --phase: 0.4839999999999982;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8153520251939186; --phase: 0.10200000000000031;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.9399832091085585; --phase: 0.7199999999999989;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7772337021849004; --phase: 0.33800000000000097;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8117097169634389; --phase: 0.9559999999999995;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6944670225538964; --phase: 0.5739999999999981;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.35697015454473185; --phase: 0.19200000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7841165492360695; --phase: 0.8099999999999987;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6283536365107116; --phase: 0.4280000000000008;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.28846185100094984; --phase: 0.045999999999999375;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5184305162110936; --phase: 0.6640000000000015;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5276406803553584; --phase: 0.28200000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5173216149586637; --phase: 0.8999999999999986;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4334345679451246; --phase: 0.5180000000000007;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4938885217120847; --phase: 0.13600000000000279;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5657241496271731; --phase: 0.7539999999999978;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5497728251522139; --phase: 0.3719999999999999;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.32683446294470037; --phase: 0.990000000000002;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3435530615795674; --phase: 0.607999999999997;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.39398160084977407; --phase: 0.2259999999999991;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4296985773471056; --phase: 0.8440000000000012;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.1987213543919054; --phase: 0.4619999999999962;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.47648042708003346; --phase: 0.0799999999999983;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6275951696232788; --phase: 0.6980000000000004;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.490801978039449; --phase: 0.3160000000000025;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.46448254810707834; --phase: 0.9339999999999975;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5213633959802423; --phase: 0.5519999999999996;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5949538751988837; --phase: 0.1700000000000017;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.31893782900893003; --phase: 0.7879999999999967;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5658143008804345; --phase: 0.4059999999999988;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.31644137067425765; --phase: 0.02400000000000091;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5162448057957658; --phase: 0.642000000000003;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5523216840279602; --phase: 0.259999999999998;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.4023939076896862; --phase: 0.8780000000000001;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.3908738256712788; --phase: 0.4960000000000022;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.5102537798252434; --phase: 0.11399999999999721;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6281573043894279; --phase: 0.7319999999999993;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6061640141002167; --phase: 0.3500000000000014;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.8274185959681704; --phase: 0.9679999999999964;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7655169767479135; --phase: 0.5859999999999985;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.7261454167096151; --phase: 0.20400000000000063;"
+              />
+              <span
+                class="bar"
+                style="--h: 0.6790485017765269; --phase: 0.8220000000000027;"
+              />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </main>
+    <footer
+      class="actionbar"
+    >
+      <span
+        class="copyright"
+      >
+        Copyright © 2026 관태
+      </span>
+      <button
+        class="quiet"
+        disabled=""
+        type="button"
+      >
+        완료 항목 지우기
+      </button>
+      <button
+        class="primary"
+        disabled=""
+        type="button"
+      >
+        변환 중…
+      </button>
+    </footer>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`파일 추가 > 빈 목록 안내와 비활성 버튼을 보여 준다 1`] = `
+<DocumentFragment>
+  <div
+    class="app"
+  >
+    <header
+      class="masthead"
+    >
+      <h1>
+        VideoToMP3
+      </h1>
+    </header>
+    <main
+      class="content"
+    >
+      <section
+        aria-label="영상 추가"
+        class="drop"
+      >
+        <span
+          aria-hidden="true"
+          class="drop-glyph"
+        >
+          <i />
+          <i />
+          <i />
+          <i />
+          <i />
+        </span>
+        <div
+          class="drop-text"
+        >
+          <p
+            class="drop-title"
+          >
+            영상 파일을 여기로 끌어다 놓으세요
+          </p>
+          <p
+            class="drop-formats"
+          >
+            mp4, mkv, avi, mov, webm 등
+          </p>
+        </div>
+        <button
+          type="button"
+        >
+          파일 선택…
+        </button>
+      </section>
+      <section
+        class="settings"
+      >
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            출력
+          </span>
+          <div
+            class="setting-control"
+          >
+            <div
+              class="setting-inline"
+            >
+              <select
+                aria-label="출력 형식"
+              >
+                <option
+                  value="mp3"
+                >
+                  MP3 (기본)
+                </option>
+                <option
+                  value="m4a"
+                >
+                  M4A (AAC)
+                </option>
+                <option
+                  value="flac"
+                >
+                  FLAC (무손실)
+                </option>
+                <option
+                  value="wav"
+                >
+                  WAV (무손실·비압축)
+                </option>
+                <option
+                  value="original"
+                >
+                  원본 형식 그대로 (무손실)
+                </option>
+              </select>
+              <select
+                aria-describedby="bitrate-hint"
+                aria-label="음질"
+                class="narrow"
+              >
+                <option
+                  value="128"
+                >
+                  128 kbps
+                </option>
+                <option
+                  value="192"
+                >
+                  192 kbps
+                </option>
+                <option
+                  value="320"
+                >
+                  320 kbps
+                </option>
+              </select>
+            </div>
+            <p
+              class="hint"
+              id="bitrate-hint"
+            >
+              320 kbps가 MP3 최고 음질입니다. 128·192 kbps는 파일이 작아지는 대신 음질이 낮아집니다. 원본이 MP3면 그대로 복사합니다.
+            </p>
+          </div>
+        </div>
+        <div
+          class="setting"
+        >
+          <span
+            class="setting-label"
+          >
+            저장 위치
+          </span>
+          <div
+            class="setting-control output-dir"
+          >
+            <span
+              class="path"
+            >
+              원본 영상과 같은 폴더
+            </span>
+            <button
+              type="button"
+            >
+              폴더 선택…
+            </button>
+          </div>
+        </div>
+      </section>
+      <p
+        class="empty"
+      >
+        추가한 영상이 여기에 표시됩니다.
+      </p>
+    </main>
+    <footer
+      class="actionbar"
+    >
+      <span
+        class="copyright"
+      >
+        Copyright © 2026 관태
+      </span>
+      <button
+        class="quiet"
+        disabled=""
+        type="button"
+      >
+        완료 항목 지우기
+      </button>
+      <button
+        class="primary"
+        disabled=""
+        type="button"
+      >
+        변환 시작 (0개)
+      </button>
+    </footer>
+  </div>
+</DocumentFragment>
+`;
